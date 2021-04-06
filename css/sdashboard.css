@@ -12,3 +12,9 @@
 body{
     background: #3F892C;
 }
+.present-status{
+    color: yellowgreen;
+}
+.absent-status{
+    color: red;
+}
