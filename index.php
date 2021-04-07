@@ -96,7 +96,7 @@ require_once './models/Database.php';
             Smart Attendance is here to make that dream a reality 🙂 
         </p>
         <br>
-        <button onclick="location.href = './view/welcome.php';" class="btn btn-dark" type="button" id="getStarted" style="border-radius: 20px;">Get Started</button>
+        <button onclick="location.href = './view/sign_up.php';" class="btn btn-dark" type="button" id="getStarted" style="border-radius: 20px;">Get Started</button>
         <hr>
         
     </div>	
