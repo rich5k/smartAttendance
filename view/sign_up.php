@@ -109,6 +109,24 @@ require_once '../models/Database.php';
                     <input type="password" class="form-control" id="confirmPswd" name="confirmPswd">
                     <span id= "confirmPasswordError" class="text-danger font-weight-bold"></span>
                 </div>
+                <div class="form-check">
+                <input class="student-check" type="radio" name="category" id="student-check" value="student" checked>
+                <label class="student-check" for="student-check">
+                    Student
+                </label>
+                </div>
+                <div class="form-check">
+                <input class="lecturer-check" type="radio" name="category" id="lecturer-check" value="lecturer">
+                <label class="lecturer-check" for="lecturer-check">
+                    Lecturer
+                </label>
+                </div>
+                <div class="form-check">
+                <input class="registry-check" type="radio" name="category" id="registry-check" value="registry">
+                <label class="registry-check" for="registry-check">
+                    Registry
+                </label>
+                </div>
                 <span id="saving"></span>
                 <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </form>
