@@ -66,21 +66,7 @@ require_once '../models/Database.php';
             <input type="text" class="form-control" id="checks">
             
         </div>
-        <div class="form-group">
-            <label for="faculty">Faculty</label>
-            <input type="text" class="form-control" id="faculty">
-            
-        </div>
-        <div class="form-group">
-            <label for="students">Students</label>
-            <input type="text" class="form-control" id="students" ">
-            
-        </div>
-        <div class="form-group">
-            <label for="cschedule">Class Schedule</label>
-            <input type="text" class="form-control" id="cschedule" >
-            
-        </div>
+        
         
         <button type="submit" class="btn btn-primary">Create</button>
         </form>
