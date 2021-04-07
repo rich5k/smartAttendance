@@ -18,3 +18,7 @@ body{
 .absent-status{
     color: red;
 }
+
+.welcome{
+    text-align: center;
+}
