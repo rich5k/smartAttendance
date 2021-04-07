@@ -55,7 +55,7 @@ require_once '../models/Database.php';
                             }else{
                                 //if not, put the default navitem
                                 echo <<<_SIGNINITEM
-                                <a id="sign-in" class="nav-link" href="./signIn.php">
+                                <a id="sign-in" class="nav-link" href="./sign_in.php">
                                     Sign In 
                                 <i class="fa fa-user" aria-hidden="true"></i></a>
                                 

@@ -54,7 +54,7 @@ require_once './models/Database.php';
                             }else{
                                 //if not, put the default navitem
                                 echo <<<_SIGNINITEM
-                                <a id="sign-in" class="nav-link" href="./signIn.php">
+                                <a id="sign-in" class="nav-link" href="./sign_in.php">
                                     Sign In 
                                 <i class="fa fa-user" aria-hidden="true"></i></a>
                                 
@@ -96,7 +96,7 @@ require_once './models/Database.php';
             Smart Attendance is here to make that dream a reality 🙂 
         </p>
         <br>
-        <button onclick="location.href = './view/sign_up.php';" class="btn btn-dark" type="button" id="getStarted" style="border-radius: 20px;">Get Started</button>
+        <button onclick="location.href = './view/sign_in.php';" class="btn btn-dark" type="button" id="getStarted" style="border-radius: 20px;">Get Started</button>
         <hr>
         
     </div>	
