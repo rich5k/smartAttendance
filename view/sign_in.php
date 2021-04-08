@@ -113,10 +113,10 @@ require_once '../models/Database.php';
                 </div>
                 <span id="saving"></span>
 
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <button type="submit" class="btn btn-primary" name="submit">Sign In</button>
                 </form>
                     <!-- redirect customer to sign up page -->
-                <h5><em>New User?</em> <button type="submit" class="btn btn-secondary" onclick="window.location.href='sign_in.php';">Sign Up Here</button></h5>
+                <h5><em>New User?</em> <button type="submit" class="btn btn-secondary" onclick="window.location.href='sign_up.php';">Sign Up Here</button></h5>
             </div>
         </div>
     </div>
