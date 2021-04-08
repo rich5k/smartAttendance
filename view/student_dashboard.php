@@ -44,7 +44,7 @@ session_start();
                     <?php
                     //if session variable has been created, put first name and last name in navbar
                             if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
-                                printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
+                                printf('<span class="signIn">Akwaaba, %s %s </span>', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
                                 echo <<<_SIGNOUTITEM
                                     <a id="sign-in" class="nav-link" href="../controller/logout.php">
                                         Sign Out 

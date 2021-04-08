@@ -29,15 +29,15 @@ if(isset($_POST['submit'])){
     //if fields are empty
     if (empty($fname) ||empty($lname) || empty($email) || empty($password) || empty($confirmPass)){
         echo '<script>alert("Some fields are empty)</script>';
-        echo '<script>window.location.href = "../view/signUp.php";</script>';
+        echo '<script>window.location.href = "../view/sign_up.php";</script>';
         exit();
-    }elseif(!preg_match("/^[A-Za-z_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z]{2,6}$/",$email)){
+    }elseif(!preg_match("/^[A-Za-z_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z]{2,6}$/",$email) && !preg_match("/^[A-Za-z_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z]{2,6}[.]{1}[A-Za-z]{2,6}$/",$email)){
         echo '<script>alert("Invalid email")</script>';
-        echo '<script>window.location.href = "../view/signUp.php";</script>';
+        echo '<script>window.location.href = "../view/sign_up.php";</script>';
         exit();
     }elseif($password !== $confirmPass){
         echo '<script>alert("Passwords do not match")</script>';
-        echo '<script>window.location.href = "../view/signUp.php";</script>';
+        echo '<script>window.location.href = "../view/sign_up.php";</script>';
         exit();
     }else{
         

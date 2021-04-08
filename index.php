@@ -79,7 +79,7 @@ session_start();
 	
 	<!-- Welcome Board -->
     <div class="container jumbotron course welcome" style="margin-top: 60px;">
-        <h2 style="text-align: start;"><strong>Welcome</strong></h2>
+        <h2 style="text-align: center;"><strong>Welcome 👋 </strong></h2>
         <br><br>
         <div style="border-radius: 20px;">
             <img id='homeimg' src="./assets/homepic.png" alt="">
