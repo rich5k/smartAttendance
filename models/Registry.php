@@ -74,6 +74,25 @@
             
         }
 
+        //gets the Registry details
+        public function getRegistryDetails($data){
+            //Prepare Query
+            $this->db->query('select * from registry where email = :email');
+
+            // Bind Values
+            $this->db->bind(':email', $data['email']);
+           
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
         //gets some registry
         public function getSomeRegistry($pID){
             //Prepare Query

@@ -38,6 +38,26 @@
             
         }
 
+        //gets the Student details
+        public function getStudentDetails($data){
+            //Prepare Query
+            $this->db->query('select * from students where email = :email');
+
+            // Bind Values
+            $this->db->bind(':email', $data['email']);
+           
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
+
         //gets students
         public function getStudents(){
             //Prepare Query

@@ -74,6 +74,25 @@
             
         }
 
+        //gets the Lecturer details
+        public function getLecturerDetails($data){
+            //Prepare Query
+            $this->db->query('select * from lecturers where email = :email');
+
+            // Bind Values
+            $this->db->bind(':email', $data['email']);
+           
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
         //gets some lecturers
         public function getSomeLecturers($pID){
             //Prepare Query

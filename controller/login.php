@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
             $studentEmail=[
                 'email'=> $email
             ];
-            if($student->getStudentEmail($studentEmail)){
+            if(!($student->getStudentEmail($studentEmail))){
                 echo '<script>alert("No user")</script>';
                 echo '<script>window.location.href = "../view/sign_up.php";</script>';
                 exit();
@@ -78,7 +78,7 @@ if(isset($_POST['submit'])){
             $lecturerEmail=[
                 'email'=> $email
             ];
-            if($lecturer->getLecturerEmail($lecturerEmail)){
+            if(!($lecturer->getLecturerEmail($lecturerEmail))){
                 echo '<script>alert("No user")</script>';
                 echo '<script>window.location.href = "../view/sign_up.php";</script>';
                 exit();
@@ -121,7 +121,7 @@ if(isset($_POST['submit'])){
             $registryEmail=[
                 'email'=> $email
             ];
-            if($registry->getRegistryEmail($registryEmail)){
+            if(!($registry->getRegistryEmail($registryEmail))){
                 echo '<script>alert("No user")</script>';
                 echo '<script>window.location.href = "../view/sign_up.php";</script>';
                 exit();
