@@ -50,6 +50,24 @@
             
         }
 
+        //adds Course
+        public function addCourse($data){
+            //Prepare Query
+            $this->db->query('insert into courses(cName, cCode) values(:cName, :cCode)');
+
+            // Bind Values
+            $this->db->bind(':cName', $data['cName']);
+            $this->db->bind(':cCode', $data['cCode']);
+
+            
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         //gets Registry email
         public function getRegistryEmail($data){
             //Prepare Query
