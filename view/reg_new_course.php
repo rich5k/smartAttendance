@@ -80,34 +80,20 @@ session_start();
 	<!-- Dashboard -->
    <div class="container jumbotron course">
         <h1>Create new Course</h1>
-        <form>
+        <form action="../controller/add_course.php" method="post">
         <div class="form-group">
             <label for="cCode">Course Code</label>
-            <input type="text" class="form-control" id="cCode">
+            <input type="text" class="form-control" name="cCode">
             
         </div>
         <div class="form-group">
             <label for="cName">Course Name</label>
-            <input type="text" class="form-control" id="cName">
-            
-        </div>
-        <div class="form-group">
-            <label for="faculty">Faculty</label>
-            <input type="text" class="form-control" id="faculty">
-            
-        </div>
-        <div class="form-group">
-            <label for="students">Students</label>
-            <input type="text" class="form-control" id="students" ">
-            
-        </div>
-        <div class="form-group">
-            <label for="cschedule">Class Schedule</label>
-            <input type="text" class="form-control" id="cschedule" >
+            <input type="text" class="form-control" name="cName">
             
         </div>
         
-        <button type="submit" class="btn btn-primary">Create</button>
+        
+        <button type="submit" name="submit" class="btn btn-primary">Create</button>
         </form>
         
    </div>

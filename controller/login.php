@@ -148,7 +148,7 @@ if(isset($_POST['submit'])){
                     $_SESSION['sessionFname']=$reg->fname;
                     $_SESSION['sessionLname']=$reg->lname;
                     echo '<script>alert("Well Done. Logged in successfully")</script>';
-                    echo '<script>window.location.href = "../view/registry_dashboard.php";</script>';
+                    echo '<script>window.location.href = "../view/reg_welcome.php";</script>';
                     
                 }else{
                     echo '<script>alert("Wrong Password")</script>';

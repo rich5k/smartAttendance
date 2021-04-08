@@ -79,7 +79,15 @@ session_start();
 	
 	<!-- Dashboard -->
    <div class="container jumbotron cheading">
-        <h1>Ongoing Courses</h1>
+        <div class="row">
+            <div class="col-lg-11">
+            <h1>Ongoing Courses</h1>
+            </div>
+            <div class="col-lg-1">
+                <a href="./reg_new_course.php" style="text-decorations:none; color:green;"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
+            
+            </div>
+        </div>
         <div class="container jumbotron course">
             <h3>
                 [20-21_SEM2_CS461_A] - Data Science

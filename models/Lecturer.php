@@ -53,7 +53,7 @@
         //gets Lecturer email
         public function getLecturerEmail($data){
             //Prepare Query
-            $this->db->query('select * from lecturer where email= :email');
+            $this->db->query('select * from lecturers where email= :email');
 
            // Bind Values
            $this->db->bind(':email', $data['email']);
