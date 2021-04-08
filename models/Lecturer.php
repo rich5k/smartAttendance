@@ -7,17 +7,17 @@
 
         }
 
-        //adds Lecturers
+        //adds lecturers
         public function addLecturer($data){
             //Prepare Query
-            $this->db->query('insert into Lecturers(LecturerName, industry, pDescription, totalInflow, totalOutflow) values(:LecturerName, :industry, :pDescription, :totalInflow, :totalOutflow)');
+            $this->db->query('insert into lecturers(fname, lname, email, password) values(:fname, :lname, :email, :password)');
 
             // Bind Values
-            $this->db->bind(':LecturerName', $data['LecturerName']);
-            $this->db->bind(':industry', $data['industry']);
-            $this->db->bind(':pDescription', $data['pDescription']);
-            $this->db->bind(':totalInflow', $data['totalInflow']);
-            $this->db->bind(':totalOutflow', $data['totalOutflow']);
+            $this->db->bind(':fname', $data['fname']);
+            $this->db->bind(':lname', $data['lname']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':password', $data['password']);
+            
             //Execute
             if($this->db->execute()){
                 return true;
@@ -29,7 +29,7 @@
         //gets last inserted Lecturer
         public function getLastLecturerID($pName){
             //Prepare Query
-            $this->db->query('select LecturerID from Lecturers where LecturerName="'.$pName.'"');
+            $this->db->query('select lecturerID from lecturers where fname="'.$pName.'"');
 
                      
             //Fetch All records
@@ -38,10 +38,10 @@
             
         }
 
-        //gets Lecturers
+        //gets lecturers
         public function getLecturers(){
             //Prepare Query
-            $this->db->query('select * from Lecturers');
+            $this->db->query('select * from lecturers');
 
                      
             //Fetch All records
@@ -50,10 +50,10 @@
             
         }
 
-        //gets some Lecturers
+        //gets some lecturers
         public function getSomeLecturers($pID){
             //Prepare Query
-            $this->db->query('select * from Lecturers where LecturerID='.$pID);
+            $this->db->query('select * from lecturers where lecturerID='.$pID);
 
                      
             //Fetch All records
@@ -62,15 +62,15 @@
             
         }
 
-        //adds Lecturer duration
-        public function addLecturerDuration($data){
+        //adds Lecturer Course
+        public function addLecturerCourse($data){
             //Prepare Query
-            $this->db->query('insert into Lecturer_duration(startTime, endTime, duration) values(:startTime, :endTime, :duration)');
+            $this->db->query('insert into lect_course(lecturerID, courseID) values(:lecturerID, :courseID)');
 
             // Bind Values
-            $this->db->bind(':startTime', $data['startTime']);
-            $this->db->bind(':endTime', $data['endTime']);
-            $this->db->bind(':duration', $data['duration']);
+            $this->db->bind(':lecturerID', $data['lecturerID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            
             
 
             //Execute
@@ -81,10 +81,10 @@
             }
         }
 
-        //gets LecturerDurationID
-        public function getLecturerDuration($projID){
+        //gets LecturerCourseID
+        public function getLecturerCourse($lcID){
             //Prepare Query
-            $this->db->query('select * from Lecturer_duration where projDurationID='.$projID);
+            $this->db->query('select * from Lecturer_course where lect_courseID='.$lcID);
 
                      
             //Fetch All records
