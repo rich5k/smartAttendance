@@ -7,17 +7,17 @@
 
         }
 
-        //adds Students
+        //adds students
         public function addStudent($data){
             //Prepare Query
-            $this->db->query('insert into Students(StudentName, industry, pDescription, totalInflow, totalOutflow) values(:StudentName, :industry, :pDescription, :totalInflow, :totalOutflow)');
+            $this->db->query('insert into students(fname, lname, email, password) values(:fname, :lname, :email, :password)');
 
             // Bind Values
-            $this->db->bind(':StudentName', $data['StudentName']);
-            $this->db->bind(':industry', $data['industry']);
-            $this->db->bind(':pDescription', $data['pDescription']);
-            $this->db->bind(':totalInflow', $data['totalInflow']);
-            $this->db->bind(':totalOutflow', $data['totalOutflow']);
+            $this->db->bind(':fname', $data['fname']);
+            $this->db->bind(':lname', $data['lname']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':password', $data['password']);
+            
             //Execute
             if($this->db->execute()){
                 return true;
@@ -29,7 +29,7 @@
         //gets last inserted Student
         public function getLastStudentID($pName){
             //Prepare Query
-            $this->db->query('select StudentID from Students where StudentName="'.$pName.'"');
+            $this->db->query('select studentID from students where fname="'.$pName.'"');
 
                      
             //Fetch All records
@@ -38,10 +38,10 @@
             
         }
 
-        //gets Students
+        //gets students
         public function getStudents(){
             //Prepare Query
-            $this->db->query('select * from Students');
+            $this->db->query('select * from students');
 
                      
             //Fetch All records
@@ -50,10 +50,10 @@
             
         }
 
-        //gets some Students
+        //gets some students
         public function getSomeStudents($pID){
             //Prepare Query
-            $this->db->query('select * from Students where StudentID='.$pID);
+            $this->db->query('select * from students where studentID='.$pID);
 
                      
             //Fetch All records
@@ -63,13 +63,13 @@
         }
 
         //adds Student duration
-        public function addStudentDuration($data){
+        public function addStudentCourse($data){
             //Prepare Query
-            $this->db->query('insert into Student_duration(startTime, endTime, duration) values(:startTime, :endTime, :duration)');
+            $this->db->query('insert into stud_course(studentID, courseID) values(:studentID, :courseID)');
 
             // Bind Values
-            $this->db->bind(':startTime', $data['startTime']);
-            $this->db->bind(':endTime', $data['endTime']);
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':courseID', $data['courseID']);
             $this->db->bind(':duration', $data['duration']);
             
 
@@ -81,10 +81,10 @@
             }
         }
 
-        //gets StudentDurationID
-        public function getStudentDuration($projID){
+        //gets StudentCourseID
+        public function getStudentCourse($scID){
             //Prepare Query
-            $this->db->query('select * from Student_duration where projDurationID='.$projID);
+            $this->db->query('select * from stud_course where stud_courseID='.$scID);
 
                      
             //Fetch All records
