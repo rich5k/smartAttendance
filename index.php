@@ -45,7 +45,7 @@ require_once './models/Database.php';
                             if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
                                 printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
                                 echo <<<_SIGNOUTITEM
-                                    <a id="sign-in" class="nav-link" href="../controller/logout.php">
+                                    <a id="sign-in" class="nav-link" href="./controller/logout.php">
                                         Sign Out 
                                     <i class="fa fa-sign-out" aria-hidden="true"></i></a>
                                 
@@ -54,7 +54,7 @@ require_once './models/Database.php';
                             }else{
                                 //if not, put the default navitem
                                 echo <<<_SIGNINITEM
-                                <a id="sign-in" class="nav-link" href="./sign_in.php">
+                                <a id="sign-in" class="nav-link" href="./view/sign_in.php">
                                     Sign In 
                                 <i class="fa fa-user" aria-hidden="true"></i></a>
                                 

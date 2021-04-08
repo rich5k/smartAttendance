@@ -38,9 +38,32 @@ require_once '../models/Database.php';
 		            <a class="nav-link" href="#">Timetable</a>
 		        </li>
                 
-                <li class="nav-item" >
-		            <a class="nav-link" href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
-		        </li>
+                <li class="nav-item signIn">
+                    <?php
+                    //if session variable has been created, put first name and last name in navbar
+                            if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
+                                printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
+                                echo <<<_SIGNOUTITEM
+                                    <a id="sign-in" class="nav-link" href="../controller/logout.php">
+                                        Sign Out 
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                                
+                                _SIGNOUTITEM;
+
+                            }else{
+                                //if not, put the default navitem
+                                echo <<<_SIGNINITEM
+                                <a id="sign-in" class="nav-link" href="./sign_in.php">
+                                    Sign In 
+                                <i class="fa fa-user" aria-hidden="true"></i></a>
+                                
+                                _SIGNINITEM;
+
+                                
+                            }
+                        ?> 
+                   
+                </li>
 		      
 
 			  
