@@ -7,17 +7,17 @@
 
         }
 
-        //adds Registrys
+        //adds Registry
         public function addRegistry($data){
             //Prepare Query
-            $this->db->query('insert into Registrys(RegistryName, industry, pDescription, totalInflow, totalOutflow) values(:RegistryName, :industry, :pDescription, :totalInflow, :totalOutflow)');
+            $this->db->query('insert into registry(fname, lname, email, password) values(:fname, :lname, :email, :password)');
 
             // Bind Values
-            $this->db->bind(':RegistryName', $data['RegistryName']);
-            $this->db->bind(':industry', $data['industry']);
-            $this->db->bind(':pDescription', $data['pDescription']);
-            $this->db->bind(':totalInflow', $data['totalInflow']);
-            $this->db->bind(':totalOutflow', $data['totalOutflow']);
+            $this->db->bind(':fname', $data['fname']);
+            $this->db->bind(':lname', $data['lname']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':password', $data['password']);
+            
             //Execute
             if($this->db->execute()){
                 return true;
@@ -29,7 +29,7 @@
         //gets last inserted Registry
         public function getLastRegistryID($pName){
             //Prepare Query
-            $this->db->query('select RegistryID from Registrys where RegistryName="'.$pName.'"');
+            $this->db->query('select registryID from registry where fname="'.$pName.'"');
 
                      
             //Fetch All records
@@ -38,10 +38,10 @@
             
         }
 
-        //gets Registrys
-        public function getRegistrys(){
+        //gets registry
+        public function getRegistry(){
             //Prepare Query
-            $this->db->query('select * from Registrys');
+            $this->db->query('select * from registry');
 
                      
             //Fetch All records
@@ -50,10 +50,10 @@
             
         }
 
-        //gets some Registrys
-        public function getSomeRegistrys($pID){
+        //gets some registry
+        public function getSomeRegistry($pID){
             //Prepare Query
-            $this->db->query('select * from Registrys where RegistryID='.$pID);
+            $this->db->query('select * from registry where registryID='.$pID);
 
                      
             //Fetch All records
@@ -62,15 +62,15 @@
             
         }
 
-        //adds Registry duration
-        public function addRegistryDuration($data){
+        //adds Registry Course
+        public function addRegistryCourse($data){
             //Prepare Query
-            $this->db->query('insert into Registry_duration(startTime, endTime, duration) values(:startTime, :endTime, :duration)');
+            $this->db->query('insert into reg_course(registryID, courseID) values(:registryID, :courseID)');
 
             // Bind Values
-            $this->db->bind(':startTime', $data['startTime']);
-            $this->db->bind(':endTime', $data['endTime']);
-            $this->db->bind(':duration', $data['duration']);
+            $this->db->bind(':registryID', $data['registryID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            
             
 
             //Execute
@@ -81,10 +81,10 @@
             }
         }
 
-        //gets RegistryDurationID
-        public function getRegistryDuration($projID){
+        //gets RegistryCourseID
+        public function getRegistryCourse($rcID){
             //Prepare Query
-            $this->db->query('select * from Registry_duration where projDurationID='.$projID);
+            $this->db->query('select * from reg_course where reg_courseID='.$rcID);
 
                      
             //Fetch All records
