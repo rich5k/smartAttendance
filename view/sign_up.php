@@ -128,7 +128,7 @@ require_once '../models/Database.php';
                 </label>
                 </div>
                 <span id="saving"></span>
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
                 </form>
             </div>
         </div>

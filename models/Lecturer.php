@@ -50,6 +50,30 @@
             
         }
 
+        //gets Lecturer email
+        public function getLecturerEmail($data){
+            //Prepare Query
+            $this->db->query('select * from lecturer where email= :email');
+
+           // Bind Values
+           $this->db->bind(':email', $data['email']);
+           
+
+           //Execute
+           $this->db->execute();
+           
+
+           //Fetch One record
+           $numRows=$this->db->rowCount();
+           if($numRows>0){
+               return true;
+           }
+           else{
+               return false;
+           }
+            
+        }
+
         //gets some lecturers
         public function getSomeLecturers($pID){
             //Prepare Query

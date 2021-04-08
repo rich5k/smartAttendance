@@ -62,6 +62,30 @@
             
         }
 
+        //gets student email
+        public function getStudentEmail($data){
+            //Prepare Query
+            $this->db->query('select * from students where email= :email');
+
+           // Bind Values
+           $this->db->bind(':email', $data['email']);
+           
+
+           //Execute
+           $this->db->execute();
+           
+
+           //Fetch One record
+           $numRows=$this->db->rowCount();
+           if($numRows>0){
+               return true;
+           }
+           else{
+               return false;
+           }
+            
+        }
+
         //adds Student duration
         public function addStudentCourse($data){
             //Prepare Query

@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
                 ];
                 
                 //Add Student To Do
-                if($student->addStudent($studentData)){
+                if($student->addStudent($StudentData)){
                     echo '<script>alert("Well Done. You have been registered successfully")</script>';
                     echo '<script>window.location.href = "../view/sign_in.php";</script>';
                     exit();
