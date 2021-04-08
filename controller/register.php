@@ -3,27 +3,28 @@ if(isset($_POST['submit'])){
     //Add Database connection
     require_once '../controller/database.php';
     require_once '../models/Student.php';
+    require_once '../models/Lecturer.php';
+    require_once '../models/Registry.php';
     require_once '../models/Database.php';
 
-    //Instantiate Customer
-    $cusstomer= new Customer();
+    //Instantiate Student
+    $student= new Student();
+
+    //Instantiate Lecturer
+    $lecturer= new Lecturer();
+
+    //Instantiate Registry
+    $registry= new Registry();
 
     $fname= $_POST['fname'];
     $lname= $_POST['lname'];
     $email=$_POST['email'];
     $password=$_POST['pswd'];
     $confirmPass=$_POST['confirmPswd'];
+    $selected_category= $_POST['category'];
 
-    //Customer Data
-    $customerData =[
-        'fname'=> $fname,
-        'lname'=> $lname,
-        'email'=> $email,
-        'password'=> $password
-    ];
-
-    // Instantiate Customer
-    $customer= new Customer();
+    
+    
 
     //if fields are empty
     if (empty($fname) ||empty($lname) || empty($email) || empty($password) || empty($confirmPass)){
@@ -39,39 +40,124 @@ if(isset($_POST['submit'])){
         echo '<script>window.location.href = "../view/signUp.php";</script>';
         exit();
     }else{
-        //Customer Email
-        $customerEmail=[
-            'email'=>$email
-        ];
-        if($customer->getCustomerEmail($customerEmail)){
-            echo '<script>alert("Username Taken")</script>';
-            echo '<script>window.location.href = "../view/signUp.php";</script>';
-            exit();
-        }
-        else{
-            
-            $hashedPass= password_hash($password, PASSWORD_DEFAULT);
+        
+        if($selected_category=="student"){
 
-            //Customer Data
-            $customerData =[
-                'fname'=> $fname,
-                'lname'=> $lname,
-                'email'=> $email,
-                'password'=> $hashedPass
+            //Student Email
+            $studentEmail=[
+                'email'=> $email
             ];
-            
-            //Add Customer To Do
-            if($customer->addCustomer($customerData)){
-                echo '<script>alert("Well Done. You have been registered successfully")</script>';
-                echo '<script>window.location.href = "../view/signIn.php";</script>';
+            if($student->getStudentEmail($studentEmail)){
+                echo '<script>alert("Username Taken")</script>';
+                echo '<script>window.location.href = "../view/sign_up.php";</script>';
                 exit();
+            }
 
-            }
             else{
-                header("Location: ../view/signUp.php?error=sqlerror1");
+            
+                $hashedPass= password_hash($password, PASSWORD_DEFAULT);
+    
+                //Student Data
+                $StudentData =[
+                    'fname'=> $fname,
+                    'lname'=> $lname,
+                    'email'=> $email,
+                    'password'=> $hashedPass
+                ];
+                
+                //Add Student To Do
+                if($student->addStudent($studentData)){
+                    echo '<script>alert("Well Done. You have been registered successfully")</script>';
+                    echo '<script>window.location.href = "../view/sign_in.php";</script>';
+                    exit();
+    
+                }
+                else{
+                    header("Location: ../view/sign_up.php?error=sqlerror1");
+                    exit();
+                }
+            }
+
+        }
+
+        elseif($selected_category=="lecturer"){
+
+            //lecturer Email
+            $lecturerEmail=[
+                'email'=> $email
+            ];
+            if($lecturer->getLecturerEmail($lecturerEmail)){
+                echo '<script>alert("Username Taken")</script>';
+                echo '<script>window.location.href = "../view/sign_up.php";</script>';
                 exit();
             }
+
+            else{
+            
+                $hashedPass= password_hash($password, PASSWORD_DEFAULT);
+    
+                //lecturer Data
+                $lecturerData =[
+                    'fname'=> $fname,
+                    'lname'=> $lname,
+                    'email'=> $email,
+                    'password'=> $hashedPass
+                ];
+                
+                //Add lecturer To Do
+                if($lecturer->addLecturer($lecturerData)){
+                    echo '<script>alert("Well Done. You have been registered successfully")</script>';
+                    echo '<script>window.location.href = "../view/sign_in.php";</script>';
+                    exit();
+    
+                }
+                else{
+                    header("Location: ../view/sign_up.php?error=sqlerror1");
+                    exit();
+                }
+            }
+
         }
+
+        else{
+
+            //registry Email
+            $registryEmail=[
+                'email'=> $email
+            ];
+            if($registry->getRegistryEmail($registryEmail)){
+                echo '<script>alert("Username Taken")</script>';
+                echo '<script>window.location.href = "../view/sign_up.php";</script>';
+                exit();
+            }
+
+            else{
+            
+                $hashedPass= password_hash($password, PASSWORD_DEFAULT);
+    
+                //registry Data
+                $registryData =[
+                    'fname'=> $fname,
+                    'lname'=> $lname,
+                    'email'=> $email,
+                    'password'=> $hashedPass
+                ];
+                
+                //Add registry To Do
+                if($registry->addRegistry($registryData)){
+                    echo '<script>alert("Well Done. You have been registered successfully")</script>';
+                    echo '<script>window.location.href = "../view/sign_in.php";</script>';
+                    exit();
+    
+                }
+                else{
+                    header("Location: ../view/sign_up.php?error=sqlerror1");
+                    exit();
+                }
+            }
+
+        }
+        
         
     }
     
