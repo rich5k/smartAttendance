@@ -1,6 +1,6 @@
 <?php
 require_once '../controller/database.php';
-require_once '../models/Lecturer.php';
+require_once '../models/Student.php';
 require_once '../models/Database.php';
 session_start();
 ?>
@@ -79,19 +79,19 @@ session_start();
 	
 	<!-- Dashboard -->
    <div class="container jumbotron course">
-        <h3>Add Lecturer</h3>
-        <form action="../controller/add_cLecturer.php" method="post">
+        <h3>Add Student</h3>
+        <form action="../controller/add_cStudent.php" method="post">
         <div class="form-group">
-            <label for="cLecturer">Lecuters:</label>
+            <label for="cStudent">Students:</label>
             <?php
-                // Instantiate Lecturer
-                $lecturer= new Lecturer();
+                // Instantiate Student
+                $student= new Student();
 
-                $lecturers= $lecturer->getLecturers();
-                //display lecturers
-                echo '<select class="form-control" id="cLecturer" name="cLecturer">';
-                foreach($lecturers as $lect){
-                    echo '<option>'.$lect->fname.' '.$lect->lname.'</option>';
+                $students= $student->getStudents();
+                //display courses
+                echo '<select class="form-control" id="cStudent" name="cStudent">';
+                foreach($students as $stud){
+                    echo '<option>'.$stud->fname.' '.$stud->lname.'</option>';
 
                 }
                 
