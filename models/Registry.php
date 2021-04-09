@@ -71,9 +71,10 @@
         //adds Schedule
         public function addSchedule($data){
             //Prepare Query
-            $this->db->query('insert into classCourse(cDay, cStartTime, cEndTime) values(:cDay, :cStartTime, :cEndTime)');
+            $this->db->query('insert into classCourse(courseID,cDay, cStartTime, cEndTime) values(:courseID, :cDay, :cStartTime, :cEndTime)');
 
             // Bind Values
+            $this->db->bind(':courseID', $data['courseID']);
             $this->db->bind(':cDay', $data['cDay']);
             $this->db->bind(':cStartTime', $data['cStartTime']);
             $this->db->bind(':cEndTime', $data['cEndTime']);

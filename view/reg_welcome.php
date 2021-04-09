@@ -120,7 +120,7 @@ session_start();
                 url:"../controller/storeCID.php",
                 data: 
                 {  
-                  'courseID' : cID
+                  'courseID' : e.parentNode.children[0].value;
                   
                 },
                 cache:false,

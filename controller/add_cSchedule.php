@@ -3,7 +3,7 @@ if(isset($_POST['submit'])){
     require_once '../controller/database.php';
     require_once '../models/Database.php';
     require_once '../models/Registry.php';
-
+    session_start();
     $mon= $_POST["mon"];
     $tues= $_POST["tues"];
     $wed= $_POST["wed"];
@@ -11,7 +11,8 @@ if(isset($_POST['submit'])){
     $fri= $_POST["fri"];
     $sTime= $_POST["sTime"];
     $eTime= $_POST["eTime"];
-
+    $courseID= $_SESSION["courseID"];
+    echo $courseID;
     //Instantiate Registry
     $registry= new Registry();
 
@@ -24,9 +25,10 @@ if(isset($_POST['submit'])){
     
     else{
         for($i=0; $i<5;$i++){
-            if($i==0 && !empty($mon)){
+            if($i==0 && $mon!="No"){
                 //Course Schedule Data
                 $cScheduleData=[
+                    'courseID'=>$courseID,
                     'cDay'=> $mon,
                     'cStartTime'=>$sTime,
                     'cEndTime'=>$eTime
@@ -44,9 +46,10 @@ if(isset($_POST['submit'])){
                 }
             }
 
-            if($i==1 && !empty($tues)){
+            if($i==1 && $tues!="No"){
                 //Course Schedule Data
                 $cScheduleData=[
+                    'courseID'=>$courseID,
                     'cDay'=> $tues,
                     'cStartTime'=>$sTime,
                     'cEndTime'=>$eTime
@@ -64,9 +67,10 @@ if(isset($_POST['submit'])){
                 }
             }
 
-            if($i==2 && !empty($wed)){
+            if($i==2 && $wed!="No"){
                 //Course Schedule Data
                 $cScheduleData=[
+                    'courseID'=>$courseID,
                     'cDay'=> $wed,
                     'cStartTime'=>$sTime,
                     'cEndTime'=>$eTime
@@ -84,9 +88,10 @@ if(isset($_POST['submit'])){
                 }
             }
 
-            if($i==3 && !empty($thurs)){
+            if($i==3 && $thurs!="No"){
                 //Course Schedule Data
                 $cScheduleData=[
+                    'courseID'=>$courseID,
                     'cDay'=> $thurs,
                     'cStartTime'=>$sTime,
                     'cEndTime'=>$eTime
@@ -104,9 +109,10 @@ if(isset($_POST['submit'])){
                 }
             }
 
-            if($i==4 && !empty($fri)){
+            if($i==4 && $fri!="No"){
                 //Course Schedule Data
                 $cScheduleData=[
+                    'courseID'=>$courseID,
                     'cDay'=> $fri,
                     'cStartTime'=>$sTime,
                     'cEndTime'=>$eTime

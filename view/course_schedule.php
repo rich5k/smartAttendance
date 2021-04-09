@@ -86,18 +86,23 @@ session_start();
                 Days of the Week:
             </label>
             <br>
+            <input type="hidden" name="mon" value="No">
             <input type="checkbox" id="mon" name="mon" value="Monday">
             <label for="mon">Monday</label>
             <br>
+            <input type="hidden" name="tues" value="No">
             <input type="checkbox" id="tues" name="tues" value="Tuesday">
             <label for="tues">Tuesday</label>
             <br>
+            <input type="hidden" name="wed" value="No">
             <input type="checkbox" id="wed" name="wed" value="Wednesday">
             <label for="wed">Wednesday</label>
             <br>
+            <input type="hidden" name="thurs" value="No">
             <input type="checkbox" id="thurs" name="thurs" value="Thursday">
             <label for="thurs">Thursday</label>
             <br>
+            <input type="hidden" name="fri" value="No">
             <input type="checkbox" id="fri" name="fri" value="Friday">
             <label for="fri">Friday</label>
             <br>

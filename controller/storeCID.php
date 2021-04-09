@@ -5,7 +5,7 @@ require_once '../models/Registry.php';
 session_start();
 //Sanitize POST Array
 $POST= filter_var_array($_POST, FILTER_SANITIZE_STRING);
-$_SESSION['sessioncId'] = $_POST['courseID'];
+$_SESSION['courseID'] = $_POST['courseID'];
 
 
 
