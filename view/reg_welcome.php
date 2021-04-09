@@ -1,6 +1,6 @@
 <?php
 require_once '../controller/database.php';
-require_once '../models/Student.php';
+require_once '../models/Registry.php';
 require_once '../models/Database.php';
 session_start();
 ?>
@@ -88,6 +88,13 @@ session_start();
             
             </div>
         </div>
+        <?php
+            // Instantiate Registry
+            $registry= new Registry();
+            echo '<div class="container jumbotron course">';
+            echo '<h3>';
+
+        ?>
         <div class="container jumbotron course">
             <h3>
                 [20-21_SEM2_CS461_A] - Data Science

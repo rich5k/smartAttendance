@@ -68,6 +68,16 @@
             }
         }
 
+        // gets Courses
+        public function getCourses(){
+            //Prepare Query
+            $this->db->query('select * from courses ');
+
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+        }
+
         //gets Course Code
         public function getCourseCode($data){
             //Prepare Query
