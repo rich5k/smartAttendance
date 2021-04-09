@@ -96,9 +96,13 @@ session_start();
             //display courses
             foreach($courses as $course){
                 echo '<div class="container jumbotron course">';
-                    echo '<h3>';
-                        echo $course->cCode. " - ". $course->cName;
-                    echo '</h3>';
+                    echo '<form>';
+                        echo '<input type="hidden" name="cID" value="'.$course->courseID.'"></input>';
+                        echo '<h3>';
+                            echo $course->cCode. " - ". $course->cName;
+                        echo '</h3>';
+                        echo '<button type="button" class="btn bg-light border  add-button" onclick="addCID(this)">Add Course Essentials</button>';
+                    echo '</form>';
                 echo '</div>';
             }
 
@@ -106,7 +110,29 @@ session_start();
         
         
    </div>
-	
+	<script>
+        function addCID(e){
+            console.log('I was clicked');
+            var cID=parseInt(e.parentNode.children[0].value);
+            console.log(cID);
+            $.ajax({
+                type:"post",
+                url:"../controller/storeCID.php",
+                data: 
+                {  
+                  'courseID' : cID
+                  
+                },
+                cache:false,
+                success: function (html) 
+                {
+                  window.location.href= "./reg_course_essen.php";
+                }
+                });
+                return false;
+        }
+    </script>
+    <?php echo $courseID;?>
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
