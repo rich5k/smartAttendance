@@ -68,6 +68,24 @@
             }
         }
 
+        //adds Schedule
+        public function addSchedule($data){
+            //Prepare Query
+            $this->db->query('insert into classCourse(cDay, cStartTime, cEndTime) values(:cDay, :cStartTime, :cEndTime)');
+
+            // Bind Values
+            $this->db->bind(':cDay', $data['cDay']);
+            $this->db->bind(':cStartTime', $data['cStartTime']);
+            $this->db->bind(':cEndTime', $data['cEndTime']);
+            
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         // gets Courses
         public function getCourses(){
             //Prepare Query
