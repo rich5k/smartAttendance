@@ -68,6 +68,31 @@
             }
         }
 
+        //gets Course Code
+        public function getCourseCode($data){
+            //Prepare Query
+            $this->db->query('select * from courses where cCode= :cCode');
+
+           // Bind Values
+           $this->db->bind(':cCode', $data['cCode']);
+           
+
+           //Execute
+           $this->db->execute();
+           
+
+           //Fetch One record
+           $numRows=$this->db->rowCount();
+           if($numRows>0){
+               return true;
+           }
+           else{
+               return false;
+           }
+            
+        }
+
+
         //gets Registry email
         public function getRegistryEmail($data){
             //Prepare Query
