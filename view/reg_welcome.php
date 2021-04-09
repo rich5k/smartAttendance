@@ -91,34 +91,19 @@ session_start();
         <?php
             // Instantiate Registry
             $registry= new Registry();
-            echo '<div class="container jumbotron course">';
-            echo '<h3>';
+
+            $courses= $registry->getCourses();
+            //display courses
+            foreach($courses as $course){
+                echo '<div class="container jumbotron course">';
+                    echo '<h3>';
+                        echo $course->cCode. " - ". $course->cName;
+                    echo '</h3>';
+                echo '</div>';
+            }
 
         ?>
-        <div class="container jumbotron course">
-            <h3>
-                [20-21_SEM2_CS461_A] - Data Science
-            
-            </h3>
-        </div>
-        <div class="container jumbotron course">
-            <h3>
-                [20-21_SEM2_CS415_A] - Software Engineering
-            
-            </h3>
-        </div>
-        <div class="container jumbotron course">
-            <h3>
-                [20-21_SEM2_CS456_A] - Algorithm Design and Analysis
-            
-            </h3>
-        </div>
-        <div class="container jumbotron course">
-            <h3>
-                [20-21_SEM2_SOAN411_A] - Leadership Seminar IV: Leadership as Service
-            
-            </h3>
-        </div>
+        
         
    </div>
 	
