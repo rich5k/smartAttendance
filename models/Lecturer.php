@@ -93,6 +93,25 @@
             
         }
 
+        //gets the Lecturer details
+        public function getLecturerDetails2($data){
+            //Prepare Query
+            $this->db->query('select * from lecturers where fname = :fname and lname= :lname');
+
+            // Bind Values
+            $this->db->bind(':fname', $data['fname']);
+            $this->db->bind(':lname', $data['lname']);
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
         //gets some lecturers
         public function getSomeLecturers($pID){
             //Prepare Query
