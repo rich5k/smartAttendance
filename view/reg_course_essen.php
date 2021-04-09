@@ -83,7 +83,9 @@ session_start();
         <br>
         <button onclick="location.href = './course_faculty.php';" type="button" class="btn btn-primary">Add Lecturer</button>
         <br>
+        <br>
         <button onclick="location.href = './course_students.php';" type="button" class="btn btn-primary">Add Student</button>
+        <br>
         <br>
         <button onclick="location.href = './course_schedule.php';" type="button" class="btn btn-primary">Add Class Schedule</button>
    </div>
