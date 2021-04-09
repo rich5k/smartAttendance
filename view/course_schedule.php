@@ -10,7 +10,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
+    <title>Add Schedule</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/sdashboard.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -79,25 +79,43 @@ session_start();
 	
 	<!-- Dashboard -->
    <div class="container jumbotron course">
-        <h3>Add Student</h3>
-        <form action="../controller/add_cStudent.php" method="post">
+        <h3>Add Schedule</h3>
+        <form action="../controller/add_cSchedule.php" method="post">
         <div class="form-group">
-            <label for="cStudent">Students:</label>
-            <?php
-                // Instantiate Student
-                $student= new Student();
-
-                $students= $student->getStudents();
-                //display courses
-                echo '<select class="form-control" id="cStudent" name="cStudent">';
-                foreach($students as $stud){
-                    echo '<option>'.$stud->fname.' '.$stud->lname.'</option>';
-
-                }
-                
-                echo '</select>';
-            ?>
+            <label for="daysWeek">
+                Days of the Week:
+            </label>
+            <br>
+            <input type="checkbox" id="mon" name="mon" value="mon">
+            <label for="mon">Monday</label>
+            <br>
+            <input type="checkbox" id="tues" name="tues" value="tues">
+            <label for="tues">Tuesday</label>
+            <br>
+            <input type="checkbox" id="wed" name="wed" value="wed">
+            <label for="wed">Wednesday</label>
+            <br>
+            <input type="checkbox" id="thurs" name="thurs" value="thurs">
+            <label for="thurs">Thursday</label>
+            <br>
+            <input type="checkbox" id="fri" name="fri" value="fri">
+            <label for="fri">Friday</label>
+            <br>
             
+        </div>
+        <div class="form-group">
+            <label for="sTime">
+                Start Time:
+            </label>
+            <input type="text" id="sTime" name="sTime" placeholder="15:00">
+            <small style="color: white;" id="sTimeHelp" class="form-text text-muted">Use 24-hr format.</small>
+            <br>
+            <label for="eTime">
+                End Time:
+            </label>
+            <input type="text" id="eTime" name="eTime" placeholder="16:30">
+            <small style="color: white;" id="eTimeHelp" class="form-text text-muted">Use 24-hr format.</small>
+            <br>
         </div>
         
         
