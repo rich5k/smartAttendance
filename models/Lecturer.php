@@ -131,7 +131,7 @@
 
                      
             //Fetch All records
-            $results=$this->db->resultset();
+            $results=$this->db->single();
             return $results;
             
         }
@@ -187,7 +187,7 @@
             }
         }
 
-        //gets LecturerCourse
+        //gets LecturerHistory
         public function getLecturerHistory($lectID, $courseID){
             //Prepare Query
             $this->db->query('select * from lect_chistory where lecturerID='.$lectID.' and courseID='.$courseID );

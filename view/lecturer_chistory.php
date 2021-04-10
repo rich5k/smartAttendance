@@ -1,6 +1,6 @@
 <?php
 require_once '../controller/database.php';
-require_once '../models/Student.php';
+require_once '../models/Lecturer.php';
 require_once '../models/Database.php';
 session_start();
 ?>
@@ -88,6 +88,7 @@ session_start();
                 // Instantiate Lecturer
                 $lecturer= new Lecturer();
                 $courseID= $_SESSION['courseID'];
+                $lectID= $_SESSION['sessionId'];
                 $courses= $lecturer->getSomeCourses($courseID);
                     echo '<h3>'.$courses->cName.'</h3>';
                 echo '<p>';
@@ -100,16 +101,24 @@ session_start();
                 echo 'Time';
                 echo '</div>';
                 echo '</div>';
-                echo '';
-                echo '';
-                echo '';
-                echo '';
-                echo '';
-                echo '';
-                echo '';
-                echo '';
+                $count=1;
+                $lectHistories=$lecturer->getLecturerHistory($lectID, $courseID);
+                foreach($lectHistories as $lectHistory){
+                    echo '<div class="row">';
+                    echo '<div class="col-lg-6">';
+                    echo $count.'. '.$lectHistory->classDate;
+                    echo '</div>';
+                    echo '<div class="col-lg-6">';
+                    echo $lectHistory->sTime;
+                    echo '</div>';
+                    echo '</div>';
+                    $count++;
+                }
+                echo '</p>';
+                echo '</div>';
+                
            ?>
-           <div class="col-lg-7">
+           <!-- <div class="col-lg-7">
                <h3>Software Engineering</h3>
                 <p>
                     <h5>Class History</h5>
@@ -132,7 +141,7 @@ session_start();
                     </div>
                     
                 </p>
-           </div>
+           </div> -->
            <div class="col-lg-2">
            <button onclick="location.href = './lecturer_sclass.php';" class="btn btn-success" type="button" id="jClass">Start Class</button>
            </div>
