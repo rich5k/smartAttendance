@@ -124,6 +124,18 @@
             
         }
 
+        //gets some courses
+        public function getSomeCourses($pID){
+            //Prepare Query
+            $this->db->query('select * from courses where courseID='.$pID);
+
+                     
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         //adds Lecturer Course
         public function addLecturerCourse($data){
             //Prepare Query

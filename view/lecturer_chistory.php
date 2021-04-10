@@ -81,7 +81,7 @@ session_start();
    <div class="container jumbotron course">
        <div class="row">
            <div class="col-lg-3">
-           <i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)
+                <a href="./lecturer_dashboard.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
            </div>
            <div class="col-lg-7">
                <h3>Software Engineering</h3>
