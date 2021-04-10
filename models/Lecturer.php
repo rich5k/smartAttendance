@@ -155,7 +155,7 @@
             }
         }
 
-        //gets LecturerCourseID
+        //gets LecturerCourse
         public function getLecturerCourse($lectID){
             //Prepare Query
             $this->db->query('select * from lect_course where lecturerID='.$lectID);
@@ -186,6 +186,19 @@
                 return false;
             }
         }
+
+        //gets LecturerCourse
+        public function getLecturerHistory($lectID, $courseID){
+            //Prepare Query
+            $this->db->query('select * from lect_chistory where lecturerID='.$lectID.' and courseID='.$courseID );
+
+                     
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         
     }
 ?>
