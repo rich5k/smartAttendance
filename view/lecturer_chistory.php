@@ -83,6 +83,32 @@ session_start();
            <div class="col-lg-3">
                 <a href="./lecturer_dashboard.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
            </div>
+           <?php
+                echo '<div class="col-lg-7">';
+                // Instantiate Lecturer
+                $lecturer= new Lecturer();
+                $courseID= $_SESSION['courseID'];
+                $courses= $lecturer->getSomeCourses($courseID);
+                    echo '<h3>'.$courses->cName.'</h3>';
+                echo '<p>';
+                echo '<h5>Class History</h5>';
+                echo '<div class="row">';
+                echo '<div class="col-lg-6">';
+                echo 'Date';
+                echo '</div>';
+                echo '<div class="col-lg-6">';
+                echo 'Time';
+                echo '</div>';
+                echo '</div>';
+                echo '';
+                echo '';
+                echo '';
+                echo '';
+                echo '';
+                echo '';
+                echo '';
+                echo '';
+           ?>
            <div class="col-lg-7">
                <h3>Software Engineering</h3>
                 <p>

@@ -118,8 +118,8 @@
             $this->db->query('select * from lecturers where lecturerID='.$pID);
 
                      
-            //Fetch All records
-            $results=$this->db->resultset();
+            //Fetch One record
+            $results=$this->db->single();
             return $results;
             
         }
@@ -167,6 +167,25 @@
             
         }
 
+        //adds Lecturer History
+        public function addLecturerHistory($data){
+            //Prepare Query
+            $this->db->query('insert into lect_chistory(lecturerID, courseID, classDate, sTime) values(:lecturerID, :courseID, :classDate, :sTime)');
+
+            // Bind Values
+            $this->db->bind(':lecturerID', $data['lecturerID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            $this->db->bind(':classDate', $data['classDate']);
+            $this->db->bind(':sTime', $data['sTime']);
+            
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
         
     }
 ?>
