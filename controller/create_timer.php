@@ -29,24 +29,17 @@ if(isset($_POST['submit'])){
             'duration'=>$duration,
             'checknum'=>$checks
         ];
-        
-        $lectDetails = $lecturer->getLecturerDetails2($lecturerData);
-        
-        //Lecturer Course Data
-        $lectCourseData=[
-            'lecturerID'=> $lectDetails->lecturerID,
-            'courseID'=> $courseID
-        ];
+
         
         //Add lecturer To Do
-        if($lecturer->addLecturerCourse($lectCourseData)){
+        if($lecturer->addClassTimer($classTimerData)){
             echo '<script>alert("Well Done. You added a lecturer to the course successfully")</script>';
-            echo '<script>window.location.href = "../view/cfaculty_inquiry.php";</script>';
+            echo '<script>window.location.href = "../view/lecturer_cclass.php";</script>';
             exit();
 
         }
         else{
-            header("Location: ../view/course_faculty.php?error=sqlerror1");
+            header("Location: ../view/lecturer_sclass.php?error=sqlerror1");
             exit();
         }
         
