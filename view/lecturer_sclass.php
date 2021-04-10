@@ -79,16 +79,23 @@ session_start();
 	
 	<!-- Dashboard -->
    <div class="container jumbotron course">
-        <h1>Create new Course</h1>
-        <form>
+        <h1>Create Class Timer</h1>
+        <form action="../controller/create_timer.php" method="post">
         <div class="form-group">
             <label for="duration">Duration:</label>
-            <input type="text" class="form-control" id="duration">
+            <select class="form-control" id="duration" name="duration">
+                <option>30 mins</option>
+                <option>1 hour</option>
+                <option>1 hour 30 mins</option>
+                <option>2 hours</option>
+                <option>2 hours 30 mins</option>
+                <option>3 hours</option>
+            </select>
             
         </div>
         <div class="form-group">
             <label for="checks">Number of checks</label>
-            <input type="text" class="form-control" id="checks">
+            <input type="number" class="form-control" id="checks">
             
         </div>
         
