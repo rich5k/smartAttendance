@@ -91,25 +91,25 @@ session_start();
                 $lectID= $_SESSION['sessionId'];
                 $courses= $lecturer->getSomeCourses($courseID);
                     echo '<h3>'.$courses->cName.'</h3>';
-                echo '<p>';
-                echo '<h5>Class History</h5>';
-                echo '<div class="row">';
-                echo '<div class="col-lg-6">';
-                echo 'Date';
-                echo '</div>';
-                echo '<div class="col-lg-6">';
-                echo 'Time';
-                echo '</div>';
-                echo '</div>';
+                    echo '<p>';
+                        echo '<h5>Class History</h5>';
+                        echo '<div class="row">';
+                            echo '<div class="col-lg-6">';
+                                echo 'Date';
+                            echo '</div>';
+                            echo '<div class="col-lg-6">';
+                                echo 'Time';
+                            echo '</div>';
+                        echo '</div>';
                 $count=1;
                 $lectHistories=$lecturer->getLecturerHistory($lectID, $courseID);
                 foreach($lectHistories as $lectHistory){
                     echo '<div class="row">';
+                        echo '<div class="col-lg-6">';
+                            echo $count.'. '.$lectHistory->classDate;
+                        echo '</div>';
                     echo '<div class="col-lg-6">';
-                    echo $count.'. '.$lectHistory->classDate;
-                    echo '</div>';
-                    echo '<div class="col-lg-6">';
-                    echo $lectHistory->sTime;
+                        echo $lectHistory->sTime;
                     echo '</div>';
                     echo '</div>';
                     $count++;
@@ -118,30 +118,7 @@ session_start();
                 echo '</div>';
                 
            ?>
-           <!-- <div class="col-lg-7">
-               <h3>Software Engineering</h3>
-                <p>
-                    <h5>Class History</h5>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            Date
-                        </div>
-                        <div class="col-lg-6">
-                            Time
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            1. 
-                        </div>
-                        <div class="col-lg-6">
-                            8:03 AM
-                            
-                        </div>
-                    </div>
-                    
-                </p>
-           </div> -->
+           
            <div class="col-lg-2">
            <button onclick="location.href = './lecturer_sclass.php';" class="btn btn-success" type="button" id="jClass">Start Class</button>
            </div>
