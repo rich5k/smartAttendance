@@ -199,6 +199,36 @@
             
         }
 
-        
+        //adds Class Timer
+        public function addClassTimer($data){
+            //Prepare Query
+            $this->db->query('insert into class_timer(lecturerID, courseID, duration, checknum) values(:lecturerID, :courseID, :duration, :checknum)');
+
+            // Bind Values
+            $this->db->bind(':lecturerID', $data['lecturerID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            $this->db->bind(':duration', $data['duration']);
+            $this->db->bind(':checknum', $data['checknum']);
+            
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //gets ClassTimer
+        public function getClassTimer($lectID, $courseID){
+            //Prepare Query
+            $this->db->query('select * from class_timer where lecturerID='.$lectID.' and courseID='.$courseID );
+
+                     
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
     }
 ?>

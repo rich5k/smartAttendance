@@ -4,27 +4,32 @@ if(isset($_POST['submit'])){
     require_once '../models/Database.php';
     require_once '../models/Lecturer.php';
     session_start();
-    $cLecturer= $_POST["cLecturer"];
+    $duration= $_POST["duration"];
+    $checks= $_SESSION["checks"];
+    $lectID= $_SESSION["sessionId"];
     $courseID= $_SESSION["courseID"];
 
     //Instantiate Lecturer
     $lecturer= new Lecturer();
 
     //if fields are empty
-    if (empty($cLecturer) ){
+    if (empty($duration) || empty($checks) ){
         echo '<script>alert("Some fields are empty)</script>';
-        echo '<script>window.location.href = "../view/course_faculty.php";</script>';
+        echo '<script>window.location.href = "../view/lecturer_sclass.php";</script>';
         exit();
     }
    
     
     else{
-        list($fname, $lname)= explode(" ", $cLecturer,2);
-        //Lecturer Data
-        $lecturerData=[
-            'fname'=>$fname,
-            'lname'=>$lname
+        
+        //classTimer Data
+        $classTimerData=[
+            'lecturer'=>$lectID,
+            'courseID'=>$courseID,
+            'duration'=>$duration,
+            'checknum'=>$checks
         ];
+        
         $lectDetails = $lecturer->getLecturerDetails2($lecturerData);
         
         //Lecturer Course Data
