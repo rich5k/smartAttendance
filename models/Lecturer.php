@@ -144,9 +144,9 @@
         }
 
         //gets LecturerCourseID
-        public function getLecturerCourse($lcID){
+        public function getLecturerCourse($lectID){
             //Prepare Query
-            $this->db->query('select * from Lecturer_course where lect_courseID='.$lcID);
+            $this->db->query('select * from lect_course where lecturerID='.$lectID);
 
                      
             //Fetch All records

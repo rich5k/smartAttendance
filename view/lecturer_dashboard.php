@@ -1,6 +1,7 @@
 <?php
 require_once '../controller/database.php';
-require_once '../models/Student.php';
+require_once '../models/Lecturer.php';
+require_once '../models/Registry.php';
 require_once '../models/Database.php';
 session_start();
 ?>
@@ -81,22 +82,61 @@ session_start();
    <div class="container jumbotron cheading">
         <h1>My Courses</h1>
         
-        <div class="container jumbotron course">
-            <h3>
-                [20-21_SEM2_CS415_A] - Software Engineering
-            
-            </h3>
-        </div>
-        <div class="container jumbotron course">
-            <h3>
-                [20-21_SEM2_CS456_A] - Algorithm Design and Analysis
-            
-            </h3>
-        </div>
+        <?php
+            // Instantiate Lecturer
+            $lecturer= new Lecturer();
+            // Instantiate Registry
+            $registry= new Registry();
+            $lectID= $_SESSION['sessionId'];
+            $lectCourses= $lecturer->getLecturerCourse($lectID);
+            $courses= $registry->getCourses();
+            //display courses
+            foreach($lectCourses as $lectcourse){
+                foreach($courses as $course){
+                    if($lectcourse->courseID){
+                        echo '<div class="container jumbotron course">';
+                            echo '<form>';
+                                echo '<input type="hidden" name="cID" value="'.$course->courseID.'"></input>';
+                                echo '<h3>';
+                                    echo $course->cCode. " - ". $course->cName;
+                                echo '</h3>';
+                                echo '<button type="button" class="btn bg-light border  add-button" onclick="addCID(this)">Check it out</button>';
+                            echo '</form>';
+                        echo '</div>';
+
+                    }
+                }
+            }
+
+        ?>
+        
        
         
    </div>
 	
+   <script>
+        function addCID(e){
+            console.log('I was clicked');
+            var cID=parseInt(e.parentNode.children[0].value);
+            console.log(cID);
+            $.ajax({
+                type:"post",
+                url:"../controller/storeCID.php",
+                data: 
+                {  
+                  'courseID' : e.parentNode.children[0].value
+                  
+                },
+                cache:false,
+                success: function (html) 
+                {
+                  window.location.href= "./lecturer_chistory.php";
+                }
+                });
+                return false;
+        }
+    </script>
+
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
