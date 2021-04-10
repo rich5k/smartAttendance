@@ -3,9 +3,9 @@ if(isset($_POST['submit'])){
     require_once '../controller/database.php';
     require_once '../models/Database.php';
     require_once '../models/Lecturer.php';
-
+    session_start();
     $cLecturer= $_POST["cLecturer"];
-   
+    $courseID= $_SESSION["courseID"];
 
     //Instantiate Lecturer
     $lecturer= new Lecturer();
@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
    
     
     else{
-        list($fname, $lname)= split(" ", $cLecturer,2);
+        list($fname, $lname)= explode(" ", $cLecturer,2);
         //Lecturer Data
         $lecturerData=[
             'fname'=>$fname,
