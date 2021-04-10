@@ -80,9 +80,7 @@ session_start();
 	<!-- Dashboard -->
    <div class="container jumbotron course course_essen">
         <h3>Pick which course essential to add to this course: 
-        <?php
-            echo $_SESSION['sessioncId'];
-        ?>
+        
         </h3>
         <br>
         <button onclick="location.href = './course_faculty.php';" type="button" class="btn btn-primary">Add Lecturer</button>

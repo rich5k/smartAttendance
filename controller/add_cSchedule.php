@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
     }
     
     else{
+        $numClassUpdates=0;
         for($i=0; $i<5;$i++){
             if($i==0 && $mon!="No"){
                 //Course Schedule Data
@@ -35,9 +36,7 @@ if(isset($_POST['submit'])){
                 ];
                 //Add course To Do
                 if($registry->addSchedule($cScheduleData)){
-                    echo '<script>alert("Well Done. You added a schedule to this course successfully")</script>';
-                    echo '<script>window.location.href = "../view/cschedule_inquiry.php";</script>';
-                    exit();
+                    $numClassUpdates++;
 
                 }
                 else{
@@ -56,9 +55,7 @@ if(isset($_POST['submit'])){
                 ];
                 //Add course To Do
                 if($registry->addSchedule($cScheduleData)){
-                    echo '<script>alert("Well Done. You added a schedule to this course successfully")</script>';
-                    echo '<script>window.location.href = "../view/cschedule_inquiry.php";</script>';
-                    exit();
+                    $numClassUpdates++;
 
                 }
                 else{
@@ -77,9 +74,7 @@ if(isset($_POST['submit'])){
                 ];
                 //Add course To Do
                 if($registry->addSchedule($cScheduleData)){
-                    echo '<script>alert("Well Done. You added a schedule to this course successfully")</script>';
-                    echo '<script>window.location.href = "../view/cschedule_inquiry.php";</script>';
-                    exit();
+                    $numClassUpdates++;
 
                 }
                 else{
@@ -98,9 +93,7 @@ if(isset($_POST['submit'])){
                 ];
                 //Add course To Do
                 if($registry->addSchedule($cScheduleData)){
-                    echo '<script>alert("Well Done. You added a schedule to this course successfully")</script>';
-                    echo '<script>window.location.href = "../view/cschedule_inquiry.php";</script>';
-                    exit();
+                    $numClassUpdates++;
 
                 }
                 else{
@@ -119,16 +112,24 @@ if(isset($_POST['submit'])){
                 ];
                 //Add course To Do
                 if($registry->addSchedule($cScheduleData)){
-                    echo '<script>alert("Well Done. You added a schedule to this course successfully")</script>';
-                    echo '<script>window.location.href = "../view/cschedule_inquiry.php";</script>';
-                    exit();
-
+                   
+                    $numClassUpdates++;
                 }
                 else{
                     header("Location: ../view/course_schedule.php?error=sqlerror1");
                     exit();
                 }
             }
+        }
+        if($numClassUpdates>0){
+            echo '<script>alert("Well Done. You added a schedule to this course successfully")</script>';
+            echo '<script>window.location.href = "../view/cschedule_inquiry.php";</script>';
+            exit();
+
+        }
+        else{
+            header("Location: ../view/course_schedule.php?error=sqlerror1");
+            exit();
         }
         
         

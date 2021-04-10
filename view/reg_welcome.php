@@ -120,7 +120,7 @@ session_start();
                 url:"../controller/storeCID.php",
                 data: 
                 {  
-                  'courseID' : e.parentNode.children[0].value;
+                  'courseID' : e.parentNode.children[0].value
                   
                 },
                 cache:false,
@@ -132,7 +132,7 @@ session_start();
                 return false;
         }
     </script>
-    <?php echo $courseID;?>
+    
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>

@@ -80,7 +80,7 @@ session_start();
 	<!-- Dashboard -->
    <div class="container jumbotron course">
         <h3>Add Student</h3>
-        <form action="../controller/add_cStudent.php" method="post">
+        <form id="studentForm" action="../controller/add_cStudent.php" method="post">
         <div class="form-group">
             <label for="cStudent">Students:</label>
             <?php
@@ -97,7 +97,10 @@ session_start();
                 
                 echo '</select>';
             ?>
-            
+            <div class="form-group">
+                <label for="cStudPhoto">Photo</label>
+                <input type="file" class="form-control-file" id="cStudPhoto" name="cStudPhoto">
+            </div>
         </div>
         
         
@@ -106,6 +109,27 @@ session_start();
         </form>
         
    </div>
+
+   <script>
+       document.getElementById('studentForm').onsubmit = function() { 
+            // console.log(document.getElementById('searchTerm').value);
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://api.luxand.cloud/subject/v2",
+                "method": "POST",
+                "headers": {
+                    "token": "19db14e27799474b99d0c4fbc4c4f62f"
+                },
+                "data": {"name":document.getElementById('cStudent').value,"store":"1","photo":document.getElementById('cStudPhoto').value}
+            }
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+            return false;
+        };
+   </script>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
