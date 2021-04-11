@@ -99,7 +99,7 @@ session_start();
                         echo '<div class="col-lg-4">';
                         echo '<button onclick="location.href = \'./student_ctimer.php\';" class="btn btn-success" type="button" id="jClass">Join Class</button>';
                         echo '</div>';
-                               
+                        
                     echo '</div>';
                     echo '</div>';
                 
@@ -112,7 +112,26 @@ session_start();
    </div>
 	<script>
         var ctime= document.getElementById("cTime");
-        ctime.innerHTML="It's timeeee";
+        // var now = new Date();
+        <?php
+            
+            // Instantiate Registry
+            $registry= new Registry();
+            $cSchedules= $registry->getSomeSchedule($courseID);
+            $count=0;
+            foreach($cSchedules as $cSchedule){
+                if(date('l')==$cSchedule->cDay){
+                    echo 'ctime.innerHTML="'.$cSchedule->cStartTime.'";';
+                }
+                else{
+                    $count++;
+                }
+            }
+            if($count>=3){
+                echo 'ctime.innerHTML="No class today";';
+            }
+        ?>
+        
     </script>
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
