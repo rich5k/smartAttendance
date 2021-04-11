@@ -81,8 +81,45 @@ session_start();
    <div class="container jumbotron course">
        <div class="row">
            <div class="col-lg-3">
-           <i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)
+           <a href="./student_dashboard.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
            </div>
+
+           <?php
+                echo '<div class="col-lg-9">';
+                // Instantiate Student
+                $student= new Student();
+                $courseID= $_SESSION['courseID'];
+                $lectID= $_SESSION['sessionId'];
+                $courses= $student->getSomeCourses($courseID);
+                    echo '<h3>'.$courses->cName.'</h3>';
+                    echo '<p>';
+                        echo '<h5>Class History</h5>';
+                        echo '<div class="row">';
+                            echo '<div class="col-lg-6">';
+                                echo 'Date';
+                            echo '</div>';
+                            echo '<div class="col-lg-6">';
+                                echo 'Time';
+                            echo '</div>';
+                        echo '</div>';
+                $count=1;
+                $lectHistories=$student->getStudentHistory($lectID, $courseID);
+                foreach($lectHistories as $lectHistory){
+                    echo '<div class="row">';
+                        echo '<div class="col-lg-6">';
+                            echo $count.'. '.$lectHistory->classDate;
+                        echo '</div>';
+                    echo '<div class="col-lg-6">';
+                        echo $lectHistory->sTime;
+                    echo '</div>';
+                    echo '</div>';
+                    $count++;
+                }
+                echo '</p>';
+                echo '</div>';
+                
+           ?>
+
            <div class="col-lg-9">
                <h3>Software Engineering</h3>
                 <p>

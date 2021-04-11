@@ -156,6 +156,29 @@
             
         }
 
+        //gets some students
+        public function getSomeCourses($pID){
+            //Prepare Query
+            $this->db->query('select * from courses where courseID='.$pID);
+
+                     
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
+        //gets AttendCheck
+        public function getAttendCheck($studentID, $courseID){
+            //Prepare Query
+            $this->db->query('select * from attendCheck where studentID='.$studentID.' and courseID='.$courseID );
+
+                     
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
         
     }
 ?>
