@@ -97,10 +97,10 @@ session_start();
                 
                 echo '</select>';
             ?>
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label for="cStudPhoto">Photo</label>
                 <input type="file" class="form-control-file" id="cStudPhoto" name="cStudPhoto">
-            </div> -->
+            </div>
         </div>
         
         
