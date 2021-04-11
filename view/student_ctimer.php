@@ -84,34 +84,55 @@ session_start();
    <div class="container jumbotron course">
        <div class="row">
            <div class="col-lg-3">
-           <i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)
+                <a href="./student_sclass.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
            </div>
-           <div class="col-lg-7">
-               <h3>Software Engineering</h3>
-                <p>
-                    <h5>Attendance Checks</h5>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            Time
-                        </div>
-                        <div class="col-lg-6">
-                            Status
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            1. 8:03 AM
-                        </div>
-                        <div class="col-lg-6">
-                            <span class="absent-status">absent</span>
-                            <button type="button" class="btn btn-primary check" data-toggle="modal" data-target="#staticBackdrop">
-                            Check attendance
-                            </button>
-                        </div>
-                    </div>
-                    
-                </p>
-           </div>
+           <?php
+                echo '<div class="col-lg-7">';
+                // Instantiate Student
+                $student= new Student();
+                $courseID= $_SESSION['courseID'];
+                $studID= $_SESSION['sessionId'];
+                $courses= $student->getSomeCourses($courseID);
+                $attendChecks= $student->getAttendCheck($studID, $courseID);
+                
+                
+                    echo '<h3>'.$courses->cName.'</h3>';
+                        echo '<p>';
+                        echo '<div class="row">';
+                            echo '<div class="col-lg-4">';
+                                echo 'Time';
+                            echo '</div>';
+                            echo '<div class="col-lg-4">';
+                                echo 'Status';
+                            echo '</div>';
+                            echo '<div class="col-lg-4">';
+                                echo 'Action';
+                            echo '</div>';
+                        echo '</div>';
+                $count=1;
+                
+                foreach($attendChecks as $attendCheck){
+                    echo '<div class="row">';
+                        echo '<div class="col-lg-4">';
+                            echo $count.'. '.$attendCheck->classDate;
+                        echo '</div>';
+                        echo '<div class="col-lg-4">';
+                            echo '<span class="absent-status">'.$attendCheck->attendStatus.'</span>';
+                        echo '</div>';
+                        echo '<div class="col-lg-4">';
+                            echo '<button type="button" class="btn btn-primary check" data-toggle="modal" data-target="#staticBackdrop">';
+                            echo 'Check attendance';
+                            echo '</button>';
+                        echo '</div>';
+                    echo '</div>';
+                    $count++;
+                }
+                echo '</p>';
+                echo '</div>';
+                
+           ?>
+
+           
            <div class="col-lg-2">
                <h3 id="page-time">8:07 AM</h3>
            </div>
