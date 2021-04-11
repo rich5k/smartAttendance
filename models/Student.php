@@ -57,6 +57,25 @@
             
         }
 
+        //gets the Student details
+        public function getStudentDetails2($data){
+            //Prepare Query
+            $this->db->query('select * from students where fname = :fname and lname= :lname');
+
+            // Bind Values
+            $this->db->bind(':fname', $data['fname']);
+            $this->db->bind(':lname', $data['lname']);
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
 
         //gets students
         public function getStudents(){
@@ -114,7 +133,7 @@
             // Bind Values
             $this->db->bind(':studentID', $data['studentID']);
             $this->db->bind(':courseID', $data['courseID']);
-            $this->db->bind(':duration', $data['duration']);
+           
             
 
             //Execute

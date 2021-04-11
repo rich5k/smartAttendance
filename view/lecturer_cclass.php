@@ -116,12 +116,13 @@ session_start();
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     if (days[now.getDay()] == "Saturday"/*any of selected class's days*/){
         //get starting time of class
-        var time1 = "01:44:00";//start time
+        var time1 = "11:05:00";//start time
         var date = months[now.getMonth()]+" "+ now.getDate()+", "+now.getFullYear();
         var start= new Date(date+" " +time1);
         
         //Get ending time of class
-        var time2= "01:45:00";//end time
+        var time2= "11:09:00";//end time
+        alert(time2);
         
         var countDownDate = new Date(date + " " +time2).getTime();
         var x = setInterval(function() {
@@ -131,11 +132,11 @@ session_start();
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                document.getElementById("demo").innerHTML = hours + ":"
+                document.getElementById("timer").innerHTML = hours + ":"
                 + minutes + ":" + seconds;
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById("demo").innerHTML = "LOCKED";
+                    document.getElementById("timer").innerHTML = "LOCKED";
                 }
             }
         }, 1000);
