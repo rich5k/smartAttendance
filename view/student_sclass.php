@@ -1,6 +1,7 @@
 <?php
 require_once '../controller/database.php';
 require_once '../models/Student.php';
+require_once '../models/Registry.php';
 require_once '../models/Database.php';
 session_start();
 ?>
@@ -81,26 +82,38 @@ session_start();
    <div class="container jumbotron course">
        <div class="row">
            <div class="col-lg-3">
-           <i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)
+           <a href="./student_chistory.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
            </div>
-           <div class="col-lg-7">
-               <h3>Software Engineering</h3>
-               <h5>Started: 8:00 AM</h5>
-               <div class="row">
-                   <div class="col-lg-8">
-
-                   </div>
-                   <div class="col-lg-4">
-                        <button onclick="location.href = './student_ctimer.php';" class="btn btn-success" type="button" id="jClass">Join Class</button>
-                   </div>
-               </div>
-           </div>
+           <?php
+                echo '<div class="col-lg-7">';
+                // Instantiate Student
+                $student= new Student();
+                $courseID= $_SESSION['courseID'];
+                $studID= $_SESSION['sessionId'];
+                $courses= $student->getSomeCourses($courseID);
+                    echo '<h3>'.$courses->cName.'</h3>';
+                    echo '<h5>Started: <span id="cTime"></span></h5>';
+                    echo '<div class="row">';
+                        echo '<div class="col-lg-8">';
+                        echo '</div>';
+                        echo '<div class="col-lg-4">';
+                        echo '<button onclick="location.href = \'./student_ctimer.php\';" class="btn btn-success" type="button" id="jClass">Join Class</button>';
+                        echo '</div>';
+                               
+                    echo '</div>';
+                    echo '</div>';
+                
+           ?>
+           
            <div class="col-lg-2">
                <h3>8:00 AM</h3>
            </div>
        </div> 
    </div>
-	
+	<script>
+        var ctime= document.getElementById("cTime");
+        ctime.innerHTML="It's timeeee";
+    </script>
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>

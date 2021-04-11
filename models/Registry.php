@@ -87,6 +87,18 @@
             }
         }
 
+        //gets some schedule
+        public function getSomeSchedule($pID){
+            //Prepare Query
+            $this->db->query('select * from classCourse where courseID='.$pID);
+
+                     
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         // gets Courses
         public function getCourses(){
             //Prepare Query
