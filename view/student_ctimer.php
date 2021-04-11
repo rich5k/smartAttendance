@@ -113,7 +113,7 @@ session_start();
                 </p>
            </div>
            <div class="col-lg-2">
-               <h3>8:07 AM</h3>
+               <h3 id="page-time">8:07 AM</h3>
            </div>
        </div> 
    </div>
