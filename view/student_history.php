@@ -85,18 +85,18 @@ session_start();
            </div>
 
            <?php
-                echo '<div class="col-lg-9">';
+                echo '<div class="col-lg-7">';
                 // Instantiate Student
                 $student= new Student();
                 $courseID= $_SESSION['courseID'];
                 $studID= $_SESSION['sessionId'];
                 $courses= $student->getSomeCourses($courseID);
-                $attendChecks= $student->getAttendCheck($studID, $courseID);
+                $studHistories= $student->getStudentHistory($studID, $courseID);
                 //$numClasses=0;
                 $numPresent=0;
                 $numAbsent=0;
-                foreach($attendChecks as $attendCheck){
-                    if($attendCheck->attendStatus == "present"){
+                foreach($studHistories as $studHistory){
+                    if($studHistory->attendStatus == "present"){
                         $numPresent++;
                     }
                     else{
@@ -115,17 +115,23 @@ session_start();
                             echo '<div class="col-lg-4">';
                                 echo 'Start Time';
                             echo '</div>';
+                            echo '<div class="col-lg-4">';
+                                echo 'Status';
+                            echo '</div>';
                         echo '</div>';
                 $count=1;
-                $lectHistories=$student->getStudentHistory($lectID, $courseID);
-                foreach($lectHistories as $lectHistory){
+                
+                foreach($studHistories as $studHistory){
                     echo '<div class="row">';
-                        echo '<div class="col-lg-6">';
-                            echo $count.'. '.$lectHistory->classDate;
+                        echo '<div class="col-lg-4">';
+                            echo $count.'. '.$studHistory->classDate;
                         echo '</div>';
-                    echo '<div class="col-lg-6">';
-                        echo $lectHistory->sTime;
-                    echo '</div>';
+                        echo '<div class="col-lg-4">';
+                            echo $studHistory->sTime;
+                        echo '</div>';
+                        echo '<div class="col-lg-4">';
+                            echo $studHistory->attendStatus;
+                        echo '</div>';
                     echo '</div>';
                     $count++;
                 }
@@ -134,61 +140,9 @@ session_start();
                 
            ?>
 
-           <div class="col-lg-9">
-               <h3>Software Engineering</h3>
-                <p>
-                    Number of classes: x% present
-                    <br>
-                    Number of missed: y%
-                    <div class="row">
-                        <div class="col-lg-4">
-                            Date
-                        </div>
-                        <div class="col-lg-4">
-                            Start Time
-                        </div>
-                        <div class="col-lg-4">
-                            Status
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            1.
-                        </div>
-                        <div class="col-lg-4">
-                            8:00 AM
-                        </div>
-                        <div class="col-lg-4">
-                            <span class="present-status">present</span>
-                            
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            2.
-                        </div>
-                        <div class="col-lg-4">
-                            8:00 AM
-                        </div>
-                        <div class="col-lg-4">
-                            <span class="absent-status">absent</span>
-                            
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            3.
-                        </div>
-                        <div class="col-lg-4">
-                            8:00 AM
-                        </div>
-                        <div class="col-lg-4">
-                            <span class="present-status">present</span>
-                            
-                        </div>
-                    </div>
-                </p>
-           </div>
+        <div class="col-lg-2">
+           <button onclick="location.href = './student_sclass.php';" class="btn btn-success" type="button" id="jClass">Go to Today's Class</button>
+        </div>
        </div> 
    </div>
 	
