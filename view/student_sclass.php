@@ -18,7 +18,9 @@ session_start();
 </head>
 
 <body>
-    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+<script type="text/javascript" src="../js/watch.js"></script>
 	<!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #264C69;">
 		<div class="container">
@@ -106,7 +108,7 @@ session_start();
            ?>
            
            <div class="col-lg-2">
-               <h3>8:00 AM</h3>
+               <h3 id="page-time"></h3>
            </div>
        </div> 
    </div>
