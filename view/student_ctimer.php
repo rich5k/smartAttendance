@@ -1,6 +1,7 @@
 <?php
 require_once '../controller/database.php';
 require_once '../models/Student.php';
+require_once '../models/Registry.php';
 require_once '../models/Database.php';
 session_start();
 ?>
@@ -85,6 +86,7 @@ session_start();
        <div class="row">
            <div class="col-lg-3">
                 <a href="./student_sclass.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
+                <p id="timer"></p>
            </div>
            <?php
                 echo '<div class="col-lg-7">';
@@ -174,6 +176,65 @@ session_start();
         </div>
     </div>
     </div>
+
+    <script>
+        var item =document.getElementById("timer");
+        // item.innerHTML="Yay! Js is working."
+        var months = ["January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"];
+        var now = new Date();
+        console.log(now.getDay());
+        //get class days
+        
+        <?php
+            // Instantiate Registry
+            $registry= new Registry();
+            $cSchedules= $registry->getSomeSchedule($courseID);
+            $count=0;
+            foreach($cSchedules as $cSchedule){
+                if(date('l')==$cSchedule->cDay){
+                    echo <<<_TIMERCALC
+                    var time1 = "$cSchedule->cStartTime";//start time
+                    var date = months[now.getMonth()]+" "+ now.getDate()+", "+now.getFullYear();
+                    var start= new Date(date+" " +time1);
+                    
+                    //Get ending time of class
+                    var time2= "$cSchedule->cEndTime";//end time
+                    console.log(new Date().getTime());
+                    
+                    var countDownDate = new Date(date + " " +time2).getTime();
+                    var x = setInterval(function() {
+                        if(new Date().getTime()>=start.getTime() ){
+                            var now = new Date().getTime();
+                            var distance = countDownDate - now;
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                            document.getElementById("timer").innerHTML = hours + ":"
+                            + minutes + ":" + seconds;
+                            if (distance < 0) {
+                                clearInterval(x);
+                                document.getElementById("timer").innerHTML = "LOCKED";
+                            }
+                        }
+                        else{
+                            document.getElementById("timer").innerHTML = "Not time for class";
+                        }
+                    }, 1000);
+                    
+                    _TIMERCALC;
+                }
+                else{
+                    $count++;
+                }
+            }
+            if($count>=3){
+                echo 'item.innerHTML="No class today";';
+            }
+        ?>
+        
+    </script>
+
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
