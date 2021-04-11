@@ -93,7 +93,7 @@ session_start();
             //display courses
             foreach($lectCourses as $lectcourse){
                 foreach($courses as $course){
-                    if($lectcourse->courseID){
+                    if($lectcourse->courseID == $course->courseID){
                         echo '<div class="container jumbotron course">';
                             echo '<form>';
                                 echo '<input type="hidden" name="cID" value="'.$course->courseID.'"></input>';
