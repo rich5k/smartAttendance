@@ -31,7 +31,7 @@ session_start();
 		    
 			<ul class="navbar-nav my-2 my-lg-0 ml-auto">
                 <li class="nav-item active" >
-		            <a class="nav-link" href="student_dashboard.php">Dashboard</a>
+		            <a class="nav-link" href="#">Dashboard</a>
 		        </li>
                 <li class="nav-item " >
 		            <a class="nav-link" href="#">My Courses</a>
