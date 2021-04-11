@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/sdashboard.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script type="text/javascript" src="../js/timer.js"></script> -->
 </head>
 
 <body>
@@ -90,20 +91,59 @@ session_start();
                 $courseID= $_SESSION['courseID'];
                 $lectID= $_SESSION['sessionId'];
                 $courses= $lecturer->getSomeCourses($courseID);
-                    echo '<h3>'.$courses->cName.'</h3>';
+                echo '<h3>'.$courses->cName.'</h3>';
                     echo '<p>';
-                        echo '<h5>Countdown Timer</h5>';
+                    echo '<h5>Countdown Timer</h5>';
                         
-                echo '</p>';
-                echo '</div>';
-                
-           ?>
+                    
+            ?>
+            <p id="timer"></p>
+            
+            </p>
+            </div>
            <div class="col-lg-2">
                <h3>8:07 AM</h3>
            </div>
        </div> 
    </div>
-	
+   <script>
+    var months = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"];
+    var now = new Date();
+
+    //get class days
+
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    if (days[now.getDay()] == "Saturday"/*any of selected class's days*/){
+        //get starting time of class
+        var time1 = "01:44:00";//start time
+        var date = months[now.getMonth()]+" "+ now.getDate()+", "+now.getFullYear();
+        var start= new Date(date+" " +time1);
+        
+        //Get ending time of class
+        var time2= "01:45:00";//end time
+        
+        var countDownDate = new Date(date + " " +time2).getTime();
+        var x = setInterval(function() {
+            if(new Date().getTime()>=start.getTime() ){
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("demo").innerHTML = hours + ":"
+                + minutes + ":" + seconds;
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "LOCKED";
+                }
+            }
+        }, 1000);
+        
+    }
+
+
+    </script>
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>

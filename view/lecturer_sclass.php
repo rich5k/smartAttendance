@@ -95,12 +95,12 @@ session_start();
         </div>
         <div class="form-group">
             <label for="checks">Number of checks</label>
-            <input type="number" class="form-control" id="checks">
+            <input type="text" class="form-control" name="checks" id="checks">
             
         </div>
         
         
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" name="submit" class="btn btn-primary">Create</button>
         </form>
         
    </div>

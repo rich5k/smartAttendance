@@ -5,17 +5,21 @@ if(isset($_POST['submit'])){
     require_once '../models/Lecturer.php';
     session_start();
     $duration= $_POST["duration"];
-    $checks= $_SESSION["checks"];
+    $checks= (int)$_SESSION["checks"];
     $lectID= $_SESSION["sessionId"];
     $courseID= $_SESSION["courseID"];
 
+    echo $duration;
+    echo $checks;
+    echo $lectID;
+    echo $courseID;
     //Instantiate Lecturer
     $lecturer= new Lecturer();
 
     //if fields are empty
     if (empty($duration) || empty($checks) ){
         echo '<script>alert("Some fields are empty)</script>';
-        echo '<script>window.location.href = "../view/lecturer_sclass.php";</script>';
+        // echo '<script>window.location.href = "../view/lecturer_sclass.php";</script>';
         exit();
     }
    
