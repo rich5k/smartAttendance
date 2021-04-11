@@ -5,14 +5,11 @@ if(isset($_POST['submit'])){
     require_once '../models/Lecturer.php';
     session_start();
     $duration= $_POST["duration"];
-    $checks= (int)$_SESSION["checks"];
+    $checks= (int)$_POST["checks"];
     $lectID= $_SESSION["sessionId"];
     $courseID= $_SESSION["courseID"];
 
-    echo $duration;
-    echo $checks;
-    echo $lectID;
-    echo $courseID;
+    
     //Instantiate Lecturer
     $lecturer= new Lecturer();
 
@@ -30,7 +27,7 @@ if(isset($_POST['submit'])){
             $realDuration=0.5;
             //classTimer Data
             $classTimerData=[
-                'lecturer'=>$lectID,
+                'lecturerID'=>$lectID,
                 'courseID'=>$courseID,
                 'duration'=>$realDuration,
                 'checknum'=>$checks
@@ -53,7 +50,7 @@ if(isset($_POST['submit'])){
             $realDuration=1.0;
             //classTimer Data
             $classTimerData=[
-                'lecturer'=>$lectID,
+                'lecturerID'=>$lectID,
                 'courseID'=>$courseID,
                 'duration'=>$realDuration,
                 'checknum'=>$checks
@@ -76,7 +73,7 @@ if(isset($_POST['submit'])){
             $realDuration=1.5;
             //classTimer Data
             $classTimerData=[
-                'lecturer'=>$lectID,
+                'lecturerID'=>$lectID,
                 'courseID'=>$courseID,
                 'duration'=>$realDuration,
                 'checknum'=>$checks
@@ -99,7 +96,7 @@ if(isset($_POST['submit'])){
             $realDuration=2.0;
             //classTimer Data
             $classTimerData=[
-                'lecturer'=>$lectID,
+                'lecturerID'=>$lectID,
                 'courseID'=>$courseID,
                 'duration'=>$realDuration,
                 'checknum'=>$checks
@@ -122,7 +119,7 @@ if(isset($_POST['submit'])){
             $realDuration=2.5;
             //classTimer Data
             $classTimerData=[
-                'lecturer'=>$lectID,
+                'lecturerID'=>$lectID,
                 'courseID'=>$courseID,
                 'duration'=>$realDuration,
                 'checknum'=>$checks
@@ -145,7 +142,7 @@ if(isset($_POST['submit'])){
             $realDuration=3.0;
             //classTimer Data
             $classTimerData=[
-                'lecturer'=>$lectID,
+                'lecturerID'=>$lectID,
                 'courseID'=>$courseID,
                 'duration'=>$realDuration,
                 'checknum'=>$checks

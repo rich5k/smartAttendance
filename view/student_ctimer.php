@@ -17,7 +17,10 @@ session_start();
 </head>
 
 <body>
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/watch.js"></script>
 	<!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #264C69;">
 		<div class="container">
@@ -101,7 +104,9 @@ session_start();
                         </div>
                         <div class="col-lg-6">
                             <span class="absent-status">absent</span>
-                            
+                            <button type="button" class="btn btn-primary check" data-toggle="modal" data-target="#staticBackdrop">
+                            Check attendance
+                            </button>
                         </div>
                     </div>
                     
@@ -112,7 +117,42 @@ session_start();
            </div>
        </div> 
    </div>
-	
+
+	<!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Attendace check</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="cam-group1">
+                <div id="camera" class="border border-secondary" style="width:350px;height:350px;"></div>
+                <button class="btn btn-primary" id="pic-snap">Take photo</button>
+            </div>
+            <div style="display:none;" class="cam-group2">
+                    <button id="retake-photo" class="btn btn-primary">Retake</button>
+                    <button id="save-photo" class="btn btn-primary">Done</button>
+                </div>
+            <div style="display:none;" class="cam-group1a">
+            </div>
+            <div style="display:none;" class="cam-group3">
+                <div class="d-flex justify-content-center">
+                    <i style="font-size: 4rem;" class="bi bi-check-circle-fill text-success"></i>
+                </div>
+                <p>Attendance marked</p>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
