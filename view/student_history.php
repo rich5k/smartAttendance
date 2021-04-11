@@ -89,17 +89,31 @@ session_start();
                 // Instantiate Student
                 $student= new Student();
                 $courseID= $_SESSION['courseID'];
-                $lectID= $_SESSION['sessionId'];
+                $studID= $_SESSION['sessionId'];
                 $courses= $student->getSomeCourses($courseID);
+                $attendChecks= $student->getAttendCheck($studID, $courseID);
+                //$numClasses=0;
+                $numPresent=0;
+                $numAbsent=0;
+                foreach($attendChecks as $attendCheck){
+                    if($attendCheck->attendStatus == "present"){
+                        $numPresent++;
+                    }
+                    else{
+                        $numAbsent++;
+                    }
+                }
                     echo '<h3>'.$courses->cName.'</h3>';
                     echo '<p>';
-                        echo '<h5>Class History</h5>';
+                        echo 'Number of classes: '.$numPresent.'% present';
+                        echo '<br>';
+                        echo 'Number of missed: '.$numAbsent.'%';
                         echo '<div class="row">';
-                            echo '<div class="col-lg-6">';
+                            echo '<div class="col-lg-4">';
                                 echo 'Date';
                             echo '</div>';
-                            echo '<div class="col-lg-6">';
-                                echo 'Time';
+                            echo '<div class="col-lg-4">';
+                                echo 'Start Time';
                             echo '</div>';
                         echo '</div>';
                 $count=1;

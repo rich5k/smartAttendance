@@ -179,6 +179,18 @@
             return $results;
             
         }
+
+        //gets StudentHistory
+        public function getStudentHistory($studentID, $courseID){
+            //Prepare Query
+            $this->db->query('select * from stud_chistory where studentID='.$studentID.' and courseID='.$courseID );
+
+                     
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
         
     }
 ?>
