@@ -360,6 +360,19 @@ session_start();
                                });
                            });
                         }
+                        else if(diff2==0){
+                            $(document).ready(function(){
+                                var status2="class ended"
+                                $.ajax({
+                                    url:'../controller/deleteCheckslot.php',
+                                    method: 'POST',
+                                    data: {statusCheck: status2},
+                                    success:function(data){
+                                        $('#attendChecker').html(data) ;
+                                    }
+                               });
+                           });
+                        }
                         for(let i = 1; i<=numRandomChecks; i++){
                             if(nTimeMins>=(randomTimes[i]+sTimeMins) && nTimeMins<=(randomTimes[i]+sTimeMins+3)){
                                 $(document).ready(function(){
