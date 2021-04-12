@@ -196,27 +196,13 @@ session_start();
     </div>
 
     <script>
-        $(document).ready(function(){
-            $('#save-photo').click(function(){
-                let status1 = "present";
-                $.ajax({
-                    url:'../controller/updateCheckslot.php',
-                    method: 'POST',
-                    data: {statusCheck: status1},
-                        success:function(data){
-                            $('#attendChecker').html(data) ;
-                        }
-                });
-                        
-            });
-        });
-
         var item =document.getElementById("timer");
-        // item.innerHTML="Yay! Js is working."
+        console.log(item);
         var months = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"];
         var now = new Date();
         console.log(now.getDay());
+        console.log("Begin");
         //get class days
         
         <?php
@@ -228,18 +214,11 @@ session_start();
             $lecturer= new Lecturer();
             $lecturers = $lecturer->getLecturers();
             $classLecturer=0;
-            foreach($lecturers as $lects){
-                $classTimer=$lecturer->getClassTimer($lects->lecturerID, $courseID);
-                if($classTimer==1){
-                    $classLecturer=$lects->lecturerID;
-                    break;
-                }
-            }
-            $classTimer=$lecturer->getClassTimer($classlecturer, $courseID);
-
+            echo 'console.log("There is class today 1")';
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
                     echo <<<_TIMERCALC
+                    console.log("There is class today");
                     var time1 = "$cSchedule->cStartTime";//start time
                     var date = months[now.getMonth()]+" "+ now.getDate()+", "+now.getFullYear();
                     var start= new Date(date+" " +time1);
@@ -250,9 +229,9 @@ session_start();
                     
                     var countDownDate = new Date(date + " " +time2).getTime();
                     const randomTimes= [];
-                    var sTimeMins = (Math.floor((start.getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((start.getTime() % (1000 * 60 * 60)) / (1000 * 60))
-                    var nTimeMins = (Math.floor((new Date().getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((new Date().getTime() % (1000 * 60 * 60)) / (1000 * 60))
-                    var eTimeMins = (Math.floor((countDownDate % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((countDownDate % (1000 * 60 * 60)) / (1000 * 60))
+                    var sTimeMins = (Math.floor((start.getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((start.getTime() % (1000 * 60 * 60)) / (1000 * 60));
+                    var nTimeMins = (Math.floor((new Date().getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((new Date().getTime() % (1000 * 60 * 60)) / (1000 * 60));
+                    var eTimeMins = (Math.floor((countDownDate % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((countDownDate % (1000 * 60 * 60)) / (1000 * 60));
                     
                     var diff1 =nTimeMins - sTimeMins;
                     var startCheck = sTimeMins+5;
@@ -265,19 +244,20 @@ session_start();
                     var openPeriod1 = nTimeMins-diff1;
                     var diff2 =eTimeMins-nTimeMins;
                     var openPeriod2 = nTimeMins-diff2;
-                    var numChecks= $classTimer->checknum;
+                    var numChecks= 3;
                     var numRandomChecks= numChecks-2;
                     if(randomTimes.length<numRandomChecks){
                         for(let i = 1; i<=numRandomChecks; i++){
                             randomTimes.push(Math.round(Math.random()*middleInterval));
                         }
                         console.log(randomTimes);
-                        randomTimes.sort(function(a,b){return a-b})
+                        randomTimes.sort(function(a,b){return a-b});
                         console.log(randomTimes);
                         
                     }
-
+                    console.log("Before Timer");
                     var x = setInterval(function() {
+                        console.log("Timer has started");
                         if(new Date().getTime()>=start.getTime() ){
                             var now = new Date().getTime();
                             var distance = countDownDate - now;
@@ -406,7 +386,6 @@ session_start();
                 echo 'item.innerHTML="No class today";';
             }
         ?>
-        
     </script>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

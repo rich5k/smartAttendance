@@ -23,12 +23,12 @@
         console.log(days);
          if (days[now.getDay()] == "Monday"/*any of selected class's days*/){
             //get starting time of class
-            var time1 = "9:00:00";//start time
+            var time1 = "20:30:00";//start time
             var date = months[now.getMonth()]+" "+ now.getDate()+", "+now.getFullYear();
             var start= new Date(date+" " +time1);
             
             //Get ending time of class
-            var time2= "11:15:00";//end time
+            var time2= "21:00:00";//end time
             console.log(new Date().getTime());
             
             var countDownDate = new Date(date + " " +time2).getTime();
