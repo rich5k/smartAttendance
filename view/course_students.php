@@ -13,12 +13,12 @@ session_start();
     <title>Add Student</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/sdashboard.css">
-    <link rel="stylesheet" href="../css/faceRecog.css">
+    
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <script defer src="../js/face-api.min.js"></script>
+    
     <script defer src="../js/script.js"></script>
 	<!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #264C69;">
@@ -99,10 +99,7 @@ session_start();
                 
                 echo '</select>';
             ?>
-            <div class="form-group">
-                <label for="cStudPhoto">Photo</label>
-                <input type="file" class="form-control-file" id="cStudPhoto" name="cStudPhoto">
-            </div>
+            
         </div>
         
         
