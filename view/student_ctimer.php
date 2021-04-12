@@ -222,7 +222,7 @@ session_start();
                     var sTimeMins = (Math.floor((start.getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((start.getTime() % (1000 * 60 * 60)) / (1000 * 60))
                     var nTimeMins = (Math.floor((new Date().getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((new Date().getTime() % (1000 * 60 * 60)) / (1000 * 60))
                     var eTimeMins = (Math.floor((countDownDate % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((countDownDate % (1000 * 60 * 60)) / (1000 * 60))
-                    //document.getElementById("timerInfo").innerHTML = eTimeMins-nTimeMins;
+                    
                     var diff1 =nTimeMins - sTimeMins;
                     var startCheck = sTimeMins+5;
                     var endCheck = eTimeMins-5;
@@ -295,6 +295,60 @@ session_start();
                                     }
                                });
                            });
+                        }
+                        else if(diff2<=5){
+                            $(document).ready(function(){
+                                var now= new Date().getTime();
+                                var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((now % (1000 * 60)) / 1000);
+                                var nowTime = hours + ":"
+                                + minutes + ":" + seconds;
+                                console.log("This is now time "+ nowTime);
+                                $.ajax({
+                                    url:'../controller/addCheckslot.php',
+                                    method: 'POST',
+                                    data: {now_date: nowTime},
+                                    success:function(data){
+                                        $('#attendChecker').html(data) ;
+                                    }
+                               });
+                           });
+                        }
+                        else if(openPeriod2==4){
+                            $(document).ready(function(){
+                                var status= "time up";
+                                
+                                $.ajax({
+                                    url:'../controller/updateCheckslot.php',
+                                    method: 'POST',
+                                    data: {statusCheck: status},
+                                    success:function(data){
+                                        $('#attendChecker').html(data) ;
+                                    }
+                               });
+                           });
+                        }
+                        for(let i = 1; i<=numRandomChecks; i++){
+                            if(nTimeMins>=(randomTimes[i]+sTimeMins) && nTimeMins<=(randomTimes[i]+sTimeMins+3)){
+                                $(document).ready(function(){
+                                    var now= new Date().getTime();
+                                    var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+                                    var seconds = Math.floor((now % (1000 * 60)) / 1000);
+                                    var nowTime = hours + ":"
+                                    + minutes + ":" + seconds;
+                                    console.log("This is now time "+ nowTime);
+                                    $.ajax({
+                                        url:'../controller/addCheckslot.php',
+                                        method: 'POST',
+                                        data: {now_date: nowTime},
+                                        success:function(data){
+                                            $('#attendChecker').html(data) ;
+                                        }
+                                   });
+                               });
+                            }
                         }
                     }, 1000);
                     
