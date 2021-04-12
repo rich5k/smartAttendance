@@ -214,7 +214,7 @@ session_start();
             $lecturer= new Lecturer();
             $lecturers = $lecturer->getLecturers();
             $classLecturer=0;
-            echo 'console.log("There is class today 1")';
+            echo 'console.log("There is class today 1");';
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
                     echo <<<_TIMERCALC
