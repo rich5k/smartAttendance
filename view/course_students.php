@@ -4,7 +4,7 @@ require_once '../models/Student.php';
 require_once '../models/Database.php';
 session_start();
 ?>
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +13,13 @@ session_start();
     <title>Add Student</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/sdashboard.css">
+    <link rel="stylesheet" href="../css/faceRecog.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    
+    <script defer src="../js/face-api.min.js"></script>
+    <script defer src="../js/script.js"></script>
 	<!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #264C69;">
 		<div class="container">
@@ -110,26 +112,7 @@ session_start();
         
    </div>
 
-   <script>
-       document.getElementById('studentForm').onsubmit = function() { 
-            // console.log(document.getElementById('searchTerm').value);
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://api.luxand.cloud/subject/v2",
-                "method": "POST",
-                "headers": {
-                    "token": "19db14e27799474b99d0c4fbc4c4f62f"
-                },
-                "data": {"name":document.getElementById('cStudent').value,"store":"1","photo":document.getElementById('cStudPhoto').value}
-            }
-
-            $.ajax(settings).done(function (response) {
-                console.log(response);
-            });
-            return false;
-        };
-   </script>
+   
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
