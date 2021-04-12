@@ -44,8 +44,8 @@ async function start(){
   // const courseSection = document.getElementsByClassName('course')
   container.style.position='relative'
   document.body.append(container)
-  const LabeledFaceDescriptors = await loadlabeledImages()
-  const faceMatcher = new faceapi.FaceMatcher(LabeledFaceDescriptors, 0.6)
+  const labeledFaceDescriptors = await loadlabeledImages()
+  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
   document.body.append('Loaded')
   imageUpload.addEventListener('change', async()=>{
     const image = await faceapi.bufferToImage(imageUpload.files[0])
@@ -72,9 +72,9 @@ function loadlabeledImages(){
     labels.map(async label=>{
       const descriptions=[]
       for(let i=1; i<=5; i++){
-        const img = await faceapi.fetchImage(`https://github.com/
-        rich5k/smartAttendance/tree/main/
-        labelled_images/${label}/${i}.jpeg`)
+        const img = await faceapi.fetchImage(`http://cdn.jsdelivr.net/gh/
+        rich5k/smartAttendance/main/
+        labelled_images/${label}/${i}.jpg`)
         const detections= await faceapi.detectSingleFace(img)
         .withFaceLandmarks().withFaceDescriptors()
         descriptions.push(detections.descriptor)
