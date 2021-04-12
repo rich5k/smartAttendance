@@ -208,6 +208,24 @@
             }
         }
 
+        //delete AttendCheck
+        public function deleteAttendCheck($data){
+            //Prepare Query
+            $this->db->query('delete from attendCheck where studentID=:studentID and courseID=:courseID ');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         //gets AttendCheck
         public function getAttendCheck($studentID, $courseID){
             //Prepare Query
@@ -229,6 +247,28 @@
             //Fetch All records
             $results=$this->db->resultset();
             return $results;
+            
+        }
+
+        //add StudentHistory
+        public function addStudentHistory($data){
+            //Prepare Query
+            $this->db->query('insert into stud_chistory(studentID, courseID, classDate, sTime, attendStatus) values(:studentID, :courseID, :classDate :sTime, :attendStatus)');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            $this->db->bind(':classDate', $data['classDate']);
+            $this->db->bind(':sTime', $data['sTime']);
+            $this->db->bind(':attendStatus', $data['attendStatus']);
+            
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
             
         }
         

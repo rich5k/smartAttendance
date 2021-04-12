@@ -360,7 +360,7 @@ session_start();
                                });
                            });
                         }
-                        else if(diff2==0){
+                        else if(diff2<=0){
                             $(document).ready(function(){
                                 var status2="class ended"
                                 $.ajax({
