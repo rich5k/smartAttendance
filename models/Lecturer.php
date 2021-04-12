@@ -226,7 +226,7 @@
 
                      
             //Fetch All records
-            $results=$this->db->resultset();
+            $results=$this->db->single();
             return $results;
             
         }

@@ -45,12 +45,23 @@
                 <div class="row">
                     <div class="col-lg-4">
                     '.$count.'. '.$attendCheck->cTime.'
-                    </div>
-                    <div class="col-lg-4">
-                        <span class="absent-status">'.$attendCheck->attendStatus.'</span>
-                    </div>
-                    <div class="col-lg-4">
-                    ';
+                    </div>';
+                    if($attendCheck->attendStatus=="present"){
+                        $output.='
+                                <div class="col-lg-4">
+                                <span class="present-status">'.$attendCheck->attendStatus.'</span>
+                            </div>
+                            <div class="col-lg-4">
+                            ';
+                    }else{
+                        $output.='
+                            <div class="col-lg-4">
+                                <span class="absent-status">'.$attendCheck->attendStatus.'</span>
+                            </div>
+                            <div class="col-lg-4">
+                            ';
+                    }
+                    
                     if($attendCheck->attendStatus=="present" || $attendCheck->attendStatus=="absent"){
                         $output.='
                         <button type="button" class="btn btn-primary check" data-toggle="modal" data-target="#staticBackdrop" disabled>

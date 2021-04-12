@@ -2,6 +2,7 @@
 require_once '../controller/database.php';
 require_once '../models/Student.php';
 require_once '../models/Registry.php';
+require_once '../models/Lecturer.php';
 require_once '../models/Database.php';
 session_start();
 ?>
@@ -118,14 +119,31 @@ session_start();
                         echo '<div class="col-lg-4">';
                             echo $count.'. '.$attendCheck->cTime;
                         echo '</div>';
-                        echo '<div class="col-lg-4">';
-                            echo '<span class="absent-status">'.$attendCheck->attendStatus.'</span>';
-                        echo '</div>';
-                        echo '<div class="col-lg-4">';
-                            echo '<button type="button" class="btn btn-primary check" data-toggle="modal" data-target="#staticBackdrop">';
-                            echo 'Check attendance';
-                            echo '</button>';
-                        echo '</div>';
+                        if($attendCheck->attendStatus=="present"){
+                            echo '<div class="col-lg-4">';
+                                echo '<span class="present-status">'.$attendCheck->attendStatus.'</span>';
+                            echo '</div>';
+                        }else{
+                            echo '<div class="col-lg-4">';
+                                echo '<span class="absent-status">'.$attendCheck->attendStatus.'</span>';
+                            echo '</div>';
+                        }
+                        if($attendCheck->attendStatus=="present" || $attendCheck->attendStatus=="absent"){
+                            echo '<div class="col-lg-4">';
+                                echo '<button type="button" class="btn btn-primary check" data-toggle="modal" data-target="#staticBackdrop" disabled>';
+                                echo 'Check attendance';
+                                echo '</button>';
+                            echo '</div>';
+                        }
+                        else{
+                            echo '<div class="col-lg-4">';
+                                echo '<button type="button" class="btn btn-primary check" data-toggle="modal" data-target="#staticBackdrop">';
+                                echo 'Check attendance';
+                                echo '</button>';
+                            echo '</div>';
+                        }
+
+                        
                     echo '</div>';
                     $count++;
                 }
@@ -206,6 +224,19 @@ session_start();
             $registry= new Registry();
             $cSchedules= $registry->getSomeSchedule($courseID);
             $count=0;
+            // Instantiate Lecturer
+            $lecturer= new Lecturer();
+            $lecturers = $lecturer->getLecturers();
+            $classLecturer=0;
+            foreach($lecturers as $lects){
+                $classTimer=$lecturer->getClassTimer($lects->lecturerID, $courseID);
+                if($classTimer==1){
+                    $classLecturer=$lects->lecturerID;
+                    break;
+                }
+            }
+            $classTimer=$lecturer->getClassTimer($classlecturer, $courseID);
+
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
                     echo <<<_TIMERCALC
@@ -234,7 +265,7 @@ session_start();
                     var openPeriod1 = nTimeMins-diff1;
                     var diff2 =eTimeMins-nTimeMins;
                     var openPeriod2 = nTimeMins-diff2;
-                    var numChecks= 5;
+                    var numChecks= $classTimer->checknum;
                     var numRandomChecks= numChecks-2;
                     if(randomTimes.length<numRandomChecks){
                         for(let i = 1; i<=numRandomChecks; i++){
