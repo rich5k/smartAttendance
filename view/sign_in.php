@@ -83,7 +83,7 @@ require_once '../models/Database.php';
             </div>
             <div class="col-sm-6">
                 <!-- form for logining in -->
-                <form onsubmit="return validate()" action="../controller/login.php" method="post">
+                <form action="../controller/login.php" method="post">
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">

@@ -89,7 +89,7 @@ session_start();
                 <p id="timer"></p>
            </div>
            <?php
-                echo '<div class="col-lg-7">';
+                echo '<div class="col-lg-7" id="attendChecker">';
                 // Instantiate Student
                 $student= new Student();
                 $courseID= $_SESSION['courseID'];
@@ -116,7 +116,7 @@ session_start();
                 foreach($attendChecks as $attendCheck){
                     echo '<div class="row">';
                         echo '<div class="col-lg-4">';
-                            echo $count.'. '.$attendCheck->classDate;
+                            echo $count.'. '.$attendCheck->cTime;
                         echo '</div>';
                         echo '<div class="col-lg-4">';
                             echo '<span class="absent-status">'.$attendCheck->attendStatus.'</span>';
@@ -178,6 +178,21 @@ session_start();
     </div>
 
     <script>
+        $(document).ready(function(){
+            $('#save-photo').click(function(){
+                let status1 = "present";
+                $.ajax({
+                    url:'../controller/updateCheckslot.php',
+                    method: 'POST',
+                    data: {statusCheck: status1},
+                        success:function(data){
+                            $('#attendChecker').html(data) ;
+                        }
+                });
+                        
+            });
+        });
+
         var item =document.getElementById("timer");
         // item.innerHTML="Yay! Js is working."
         var months = ["January", "February", "March", "April", "May", "June", "July",
@@ -200,9 +215,37 @@ session_start();
                     
                     //Get ending time of class
                     var time2= "$cSchedule->cEndTime";//end time
-                    console.log(new Date().getTime());
+                    console.log(time1);
                     
                     var countDownDate = new Date(date + " " +time2).getTime();
+                    const randomTimes= [];
+                    var sTimeMins = (Math.floor((start.getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((start.getTime() % (1000 * 60 * 60)) / (1000 * 60))
+                    var nTimeMins = (Math.floor((new Date().getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((new Date().getTime() % (1000 * 60 * 60)) / (1000 * 60))
+                    var eTimeMins = (Math.floor((countDownDate % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((countDownDate % (1000 * 60 * 60)) / (1000 * 60))
+                    //document.getElementById("timerInfo").innerHTML = eTimeMins-nTimeMins;
+                    var diff1 =nTimeMins - sTimeMins;
+                    var startCheck = sTimeMins+5;
+                    var endCheck = eTimeMins-5;
+                    var middleInterval= endCheck-startCheck;
+                    console.log(sTimeMins);
+                    console.log(startCheck);
+                    console.log(eTimeMins);
+                    console.log(endCheck);
+                    var openPeriod1 = nTimeMins-diff1;
+                    var diff2 =eTimeMins-nTimeMins;
+                    var openPeriod2 = nTimeMins-diff2;
+                    var numChecks= 5;
+                    var numRandomChecks= numChecks-2;
+                    if(randomTimes.length<numRandomChecks){
+                        for(let i = 1; i<=numRandomChecks; i++){
+                            randomTimes.push(Math.round(Math.random()*middleInterval));
+                        }
+                        console.log(randomTimes);
+                        randomTimes.sort(function(a,b){return a-b})
+                        console.log(randomTimes);
+                        
+                    }
+
                     var x = setInterval(function() {
                         if(new Date().getTime()>=start.getTime() ){
                             var now = new Date().getTime();
@@ -219,6 +262,39 @@ session_start();
                         }
                         else{
                             document.getElementById("timer").innerHTML = "Not time for class";
+                        }
+                        if(diff1==5){
+                            $(document).ready(function(){
+                                var now= new Date().getTime();
+                                var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((now % (1000 * 60)) / 1000);
+                                var nowTime = hours + ":"
+                                + minutes + ":" + seconds;
+                                console.log("This is now time "+ nowTime);
+                                $.ajax({
+                                    url:'../controller/addCheckslot.php',
+                                    method: 'POST',
+                                    data: {now_date: nowTime},
+                                    success:function(data){
+                                        $('#attendChecker').html(data) ;
+                                    }
+                               });
+                           });
+                        }
+                        else if(openPeriod1==4){
+                            $(document).ready(function(){
+                                var status= "time up";
+                                
+                                $.ajax({
+                                    url:'../controller/updateCheckslot.php',
+                                    method: 'POST',
+                                    data: {statusCheck: status},
+                                    success:function(data){
+                                        $('#attendChecker').html(data) ;
+                                    }
+                               });
+                           });
                         }
                     }, 1000);
                     

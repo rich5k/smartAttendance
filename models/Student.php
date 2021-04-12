@@ -168,6 +168,46 @@
             
         }
 
+        //adds AttendCheck
+        public function addAttendCheck($data){
+            //Prepare Query
+            $this->db->query('insert into attendCheck(studentID, courseID, cTime, attendStatus) values(:studentID, :courseID, :cTime, :attendStatus)');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            $this->db->bind(':cTime', $data['cTime']);
+            $this->db->bind(':attendStatus', $data['attendStatus']);
+            
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //update AttendCheck
+        public function updateAttendCheck($data){
+            //Prepare Query
+            $this->db->query('update attendCheck set attendStatus=:attendStatus where studentID=:studentID and courseID=:courseID and cTime= :cTime');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':courseID', $data['courseID']);
+            $this->db->bind(':cTime', $data['cTime']);
+            $this->db->bind(':attendStatus', $data['attendStatus']);
+            
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         //gets AttendCheck
         public function getAttendCheck($studentID, $courseID){
             //Prepare Query
