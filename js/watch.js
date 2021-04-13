@@ -22,6 +22,7 @@ function initCamera(){
 $(document).ready(function(){
     // Calls the updateTime function every second to 
     // update the clock
+    // console.log("This is a test: "+$("#disabledButton").attr("class"));
     setInterval(updateTime, 1000);
 
     $(".check").on("click", function(){
@@ -78,6 +79,9 @@ $(document).ready(function(){
             $(".cam-group3").hide();
         }, 2000);
     });
+    $('#staticBackdrop').on('shown.bs.modal', function () {
+        initCamera();
+    })
 
     // Turns off webcam when modal closes
     $('#staticBackdrop').on('hidden.bs.modal', function (event) {
