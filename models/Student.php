@@ -147,7 +147,7 @@
         //gets StudentCourseID
         public function getStudentCourse($scID){
             //Prepare Query
-            $this->db->query('select * from stud_course where stud_courseID='.$scID);
+            $this->db->query('select * from stud_course where studentID='.$scID);
 
                      
             //Fetch All records
