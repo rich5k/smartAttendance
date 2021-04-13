@@ -228,7 +228,7 @@ session_start();
                     console.log(time1);
                     
                     var countDownDate = new Date(date + " " +time2).getTime();
-                    const randomTimes= [];
+                    var randomTimes= [];
                     var sTimeMins = (Math.floor((start.getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((start.getTime() % (1000 * 60 * 60)) / (1000 * 60));
                     var nTimeMins = (Math.floor((new Date().getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((new Date().getTime() % (1000 * 60 * 60)) / (1000 * 60));
                     var eTimeMins = (Math.floor((countDownDate % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((countDownDate % (1000 * 60 * 60)) / (1000 * 60));
@@ -241,9 +241,9 @@ session_start();
                     console.log(startCheck);
                     console.log(eTimeMins);
                     console.log(endCheck);
-                    var openPeriod1 = startCheck+4;
+                    var openPeriod1 = sTimeMins+9;
                     var diff2 =eTimeMins-nTimeMins;
-                    var openPeriod2 = endCheck+4;
+                    var openPeriod2 = eTimeMins-1;
                     var numChecks= 3;
                     
                     var numRandomChecks= numChecks-2;
