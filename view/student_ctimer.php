@@ -21,7 +21,6 @@ session_start();
 <body>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../js/watch.js"></script>
 	<!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #264C69;">
@@ -155,6 +154,7 @@ session_start();
            
            <div class="col-lg-2">
                <h3 id="page-time"></h3>
+               
            </div>
        </div> 
    </div>
@@ -189,7 +189,7 @@ session_start();
             
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">CHeck attendance</button>
         </div>
         </div>
     </div>
@@ -197,16 +197,18 @@ session_start();
 
     <script>
         $(document).ready(function(){
-            var status= "present";
-                                    
-            $.ajax({
-                url:'../controller/updateCheckslot.php',
-                method: 'POST',
-                data: {statusCheck: status},
-                success:function(data){
-                    $('#attendChecker').html(data) ;
-                }
-            });
+            
+            $("#save-photo").click(function(){
+                var status= "present";
+                $.ajax({
+                    url:'../controller/updateCheckslot.php',
+                    method: 'POST',
+                    data: {statusCheck: status},
+                    success:function(data){
+                        $('#attendChecker').html(data) ;
+                    }
+                });
+            })                       
         });
 
         var item =document.getElementById("timer");
