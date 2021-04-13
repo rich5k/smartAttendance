@@ -245,6 +245,7 @@ session_start();
                     var diff2 =eTimeMins-nTimeMins;
                     var openPeriod2 = endCheck+4;
                     var numChecks= 3;
+                    
                     var numRandomChecks= numChecks-2;
                     if(randomTimes.length<numRandomChecks){
                         for(let i = 1; i<=numRandomChecks; i++){
@@ -340,7 +341,7 @@ session_start();
                                });
                            });
                         }
-                        else if(nTimeMins==endCheck+5){
+                        else if(nTimeMins==eTimeMins){
                             $(document).ready(function(){
                                 var status2="class ended"
                                 $.ajax({
