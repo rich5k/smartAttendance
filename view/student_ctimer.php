@@ -241,9 +241,9 @@ session_start();
                     console.log(startCheck);
                     console.log(eTimeMins);
                     console.log(endCheck);
-                    var openPeriod1 = nTimeMins-diff1;
+                    var openPeriod1 = startCheck+4;
                     var diff2 =eTimeMins-nTimeMins;
-                    var openPeriod2 = nTimeMins-diff2;
+                    var openPeriod2 = endCheck+4;
                     var numChecks= 3;
                     var numRandomChecks= numChecks-2;
                     if(randomTimes.length<numRandomChecks){
@@ -274,7 +274,7 @@ session_start();
                         else{
                             document.getElementById("timer").innerHTML = "Not time for class";
                         }
-                        if(diff1==5){
+                        if(nTimeMins==startCheck){
                             $(document).ready(function(){
                                 var now= new Date().getTime();
                                 var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -293,7 +293,7 @@ session_start();
                                });
                            });
                         }
-                        else if(openPeriod1==4){
+                        else if(nTimeMins==openPeriod1){
                             $(document).ready(function(){
                                 var status= "time up";
                                 
@@ -307,7 +307,7 @@ session_start();
                                });
                            });
                         }
-                        else if(diff2<=5){
+                        else if(nTimeMins==endCheck){
                             $(document).ready(function(){
                                 var now= new Date().getTime();
                                 var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -326,7 +326,7 @@ session_start();
                                });
                            });
                         }
-                        else if(openPeriod2==4){
+                        else if(nTimeMins==openPeriod2){
                             $(document).ready(function(){
                                 var status= "time up";
                                 
@@ -340,7 +340,7 @@ session_start();
                                });
                            });
                         }
-                        else if(diff2<=0){
+                        else if(nTimeMins==endCheck+5){
                             $(document).ready(function(){
                                 var status2="class ended"
                                 $.ajax({

@@ -53,8 +53,8 @@ if(isset($_POST['submit'])){
             $timeCount=0;
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
-                    echo $cSchedule->cStartTime;
-                    echo $cSchedule->cEndTime;
+                    // echo $cSchedule->cStartTime;
+                    // echo $cSchedule->cEndTime;
                     if($nTime>=$cSchedule->cStartTime && $nTime<=$cSchedule->cEndTime){
                         //Add class timer To Do
                         if($lecturer->addClassTimer($classTimerData)){
