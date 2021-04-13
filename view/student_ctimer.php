@@ -164,7 +164,7 @@ session_start();
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Attendace check</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">Attendance check</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -196,6 +196,19 @@ session_start();
     </div>
 
     <script>
+        $(document).ready(function(){
+            var status= "present";
+                                    
+            $.ajax({
+                url:'../controller/updateCheckslot.php',
+                method: 'POST',
+                data: {statusCheck: status},
+                success:function(data){
+                    $('#attendChecker').html(data) ;
+                }
+            });
+        });
+
         var item =document.getElementById("timer");
         console.log(item);
         var months = ["January", "February", "March", "April", "May", "June", "July",
@@ -245,7 +258,8 @@ session_start();
                     var diff2 =eTimeMins-nTimeMins;
                     var openPeriod2 = eTimeMins-1;
                     var numChecks= 3;
-                    
+                    var numStartCheck=0;
+                    var numEndCheck =0;
                     var numRandomChecks= numChecks-2;
                     if(randomTimes.length<numRandomChecks){
                         for(let i = 1; i<=numRandomChecks; i++){
@@ -261,6 +275,21 @@ session_start();
                         console.log("Timer has started");
                         if(new Date().getTime()>=start.getTime() ){
                             var now = new Date().getTime();
+                            var sTimeMins = (Math.floor((start.getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((start.getTime() % (1000 * 60 * 60)) / (1000 * 60));
+                            var nTimeMins = (Math.floor((new Date().getTime() % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((new Date().getTime() % (1000 * 60 * 60)) / (1000 * 60));
+                            var eTimeMins = (Math.floor((countDownDate % (1000 * 60* 60 * 24))/(1000*60 *60) )+1)*60 + Math.floor((countDownDate % (1000 * 60 * 60)) / (1000 * 60));
+                            
+                            var diff1 =nTimeMins - sTimeMins;
+                            var startCheck = sTimeMins+5;
+                            var endCheck = eTimeMins-5;
+                            var middleInterval= endCheck-startCheck;
+                            console.log(sTimeMins);
+                            console.log(startCheck);
+                            console.log(eTimeMins);
+                            console.log(endCheck);
+                            var openPeriod1 = sTimeMins+9;
+                            var diff2 =eTimeMins-nTimeMins;
+                            var openPeriod2 = eTimeMins-1;
                             var distance = countDownDate - now;
                             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -272,23 +301,26 @@ session_start();
                                 document.getElementById("timer").innerHTML = "LOCKED";
                             }
                             if(nTimeMins==startCheck){
-                                $(document).ready(function(){
-                                    var now= new Date().getTime();
-                                    var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                    var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
-                                    var seconds = Math.floor((now % (1000 * 60)) / 1000);
-                                    var nowTime = hours + ":"
-                                    + minutes + ":" + seconds;
-                                    console.log("This is now time "+ nowTime);
-                                    $.ajax({
-                                        url:'../controller/addCheckslot.php',
-                                        method: 'POST',
-                                        data: {now_date: nowTime},
-                                        success:function(data){
-                                            $('#attendChecker').html(data) ;
-                                        }
+                                if(numStartCheck==0){
+                                    $(document).ready(function(){
+                                        var now= new Date().getTime();
+                                        var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                        var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+                                        var seconds = Math.floor((now % (1000 * 60)) / 1000);
+                                        var nowTime = hours + ":"
+                                        + minutes + ":" + seconds;
+                                        console.log("This is now time "+ nowTime);
+                                        $.ajax({
+                                            url:'../controller/addCheckslot.php',
+                                            method: 'POST',
+                                            data: {now_date: nowTime},
+                                            success:function(data){
+                                                $('#attendChecker').html(data) ;
+                                            }
+                                       });
                                    });
-                               });
+                                   numStartCheck++;
+                                }
                             }
                             else if(nTimeMins==openPeriod1){
                                 $(document).ready(function(){
@@ -305,23 +337,27 @@ session_start();
                                });
                             }
                             else if(nTimeMins==endCheck){
-                                $(document).ready(function(){
-                                    var now= new Date().getTime();
-                                    var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                    var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
-                                    var seconds = Math.floor((now % (1000 * 60)) / 1000);
-                                    var nowTime = hours + ":"
-                                    + minutes + ":" + seconds;
-                                    console.log("This is now time "+ nowTime);
-                                    $.ajax({
-                                        url:'../controller/addCheckslot.php',
-                                        method: 'POST',
-                                        data: {now_date: nowTime},
-                                        success:function(data){
-                                            $('#attendChecker').html(data) ;
-                                        }
+                                if(numEndCheck==0){
+                                    $(document).ready(function(){
+                                        var now= new Date().getTime();
+                                        var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                        var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+                                        var seconds = Math.floor((now % (1000 * 60)) / 1000);
+                                        var nowTime = hours + ":"
+                                        + minutes + ":" + seconds;
+                                        console.log("This is now time "+ nowTime);
+                                        $.ajax({
+                                            url:'../controller/addCheckslot.php',
+                                            method: 'POST',
+                                            data: {now_date: nowTime},
+                                            success:function(data){
+                                                $('#attendChecker').html(data) ;
+                                            }
+                                       });
                                    });
-                               });
+
+                                   numEndCheck++;
+                                }
                             }
                             else if(nTimeMins==openPeriod2){
                                 $(document).ready(function(){

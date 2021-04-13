@@ -253,7 +253,7 @@
         //add StudentHistory
         public function addStudentHistory($data){
             //Prepare Query
-            $this->db->query('insert into stud_chistory(studentID, courseID, classDate, sTime, attendStatus) values(:studentID, :courseID, :classDate :sTime, :attendStatus)');
+            $this->db->query('insert into stud_chistory(studentID, courseID, classDate, sTime, attendStatus) values(:studentID, :courseID, :classDate, :sTime, :attendStatus)');
 
             // Bind Values
             $this->db->bind(':studentID', $data['studentID']);
