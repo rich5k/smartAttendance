@@ -5,7 +5,7 @@ require_once '../models/Registry.php';
 require_once '../models/Database.php';
 session_start();
 ?>
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +84,7 @@ session_start();
    <div class="container jumbotron course">
        <div class="row">
            <div class="col-lg-3">
-           <a href="./student_chistory.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
+           <a href="./student_history.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
            </div>
            <?php
                 echo '<div class="col-lg-7">';

@@ -8,7 +8,7 @@
         $output ='';
         $status=$_POST["statusCheck"];
 
-        date_default_timezone_set('Africa/Accra');
+        date_default_timezone_set('Europe/London');
         $date = date('Y-m-d', time());
         // Instantiate Student
         $student= new Student();

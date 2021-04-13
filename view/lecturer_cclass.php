@@ -85,7 +85,7 @@ session_start();
    <div class="container jumbotron course">
        <div class="row">
            <div class="col-lg-3">
-                <a href="./lecturer_cclass.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
+                <a href="./lecturer_sclass.php" style="text-decorations:none; color:white;"><i class="fa fa-arrow-left" aria-hidden="true"></i>(Back)</a>
            </div>
            <?php
                 echo '<div class="col-lg-7">';
@@ -146,7 +146,7 @@ session_start();
                             + minutes + ":" + seconds;
                             if (distance < 0) {
                                 clearInterval(x);
-                                document.getElementById("timer").innerHTML = "LOCKED";
+                                document.getElementById("timer").innerHTML = "LOCKED: Time for class has passed see Registry";
                             }
                         }
                         else{
