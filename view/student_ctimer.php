@@ -26,7 +26,7 @@ session_start();
 	<!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #264C69;">
 		<div class="container">
-			<a class="navbar-brand" href="../index.php"><img src="../assets/logo1.jpg" alt=""></a>
+			<a class="navbar-brand" href="../index.php"><img src="../assets/logo1.png" alt=""></a>
 			<!-- Hamburger -->
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
@@ -271,91 +271,7 @@ session_start();
                                 clearInterval(x);
                                 document.getElementById("timer").innerHTML = "LOCKED";
                             }
-                        }
-                        else{
-                            document.getElementById("timer").innerHTML = "Not time for class";
-                        }
-                        if(nTimeMins==startCheck){
-                            $(document).ready(function(){
-                                var now= new Date().getTime();
-                                var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
-                                var seconds = Math.floor((now % (1000 * 60)) / 1000);
-                                var nowTime = hours + ":"
-                                + minutes + ":" + seconds;
-                                console.log("This is now time "+ nowTime);
-                                $.ajax({
-                                    url:'../controller/addCheckslot.php',
-                                    method: 'POST',
-                                    data: {now_date: nowTime},
-                                    success:function(data){
-                                        $('#attendChecker').html(data) ;
-                                    }
-                               });
-                           });
-                        }
-                        else if(nTimeMins==openPeriod1){
-                            $(document).ready(function(){
-                                var status= "time up";
-                                
-                                $.ajax({
-                                    url:'../controller/updateCheckslot.php',
-                                    method: 'POST',
-                                    data: {statusCheck: status},
-                                    success:function(data){
-                                        $('#attendChecker').html(data) ;
-                                    }
-                               });
-                           });
-                        }
-                        else if(nTimeMins==endCheck){
-                            $(document).ready(function(){
-                                var now= new Date().getTime();
-                                var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
-                                var seconds = Math.floor((now % (1000 * 60)) / 1000);
-                                var nowTime = hours + ":"
-                                + minutes + ":" + seconds;
-                                console.log("This is now time "+ nowTime);
-                                $.ajax({
-                                    url:'../controller/addCheckslot.php',
-                                    method: 'POST',
-                                    data: {now_date: nowTime},
-                                    success:function(data){
-                                        $('#attendChecker').html(data) ;
-                                    }
-                               });
-                           });
-                        }
-                        else if(nTimeMins==openPeriod2){
-                            $(document).ready(function(){
-                                var status= "time up";
-                                
-                                $.ajax({
-                                    url:'../controller/updateCheckslot.php',
-                                    method: 'POST',
-                                    data: {statusCheck: status},
-                                    success:function(data){
-                                        $('#attendChecker').html(data) ;
-                                    }
-                               });
-                           });
-                        }
-                        else if(nTimeMins==eTimeMins){
-                            $(document).ready(function(){
-                                var status2="class ended"
-                                $.ajax({
-                                    url:'../controller/deleteCheckslot.php',
-                                    method: 'POST',
-                                    data: {statusCheck: status2},
-                                    success:function(data){
-                                        $('#attendChecker').html(data) ;
-                                    }
-                               });
-                           });
-                        }
-                        for(let i = 1; i<=numRandomChecks; i++){
-                            if(nTimeMins>=(randomTimes[i]+sTimeMins) && nTimeMins<=(randomTimes[i]+sTimeMins+3)){
+                            if(nTimeMins==startCheck){
                                 $(document).ready(function(){
                                     var now= new Date().getTime();
                                     var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -374,6 +290,90 @@ session_start();
                                    });
                                });
                             }
+                            else if(nTimeMins==openPeriod1){
+                                $(document).ready(function(){
+                                    var status= "time up";
+                                    
+                                    $.ajax({
+                                        url:'../controller/updateCheckslot.php',
+                                        method: 'POST',
+                                        data: {statusCheck: status},
+                                        success:function(data){
+                                            $('#attendChecker').html(data) ;
+                                        }
+                                   });
+                               });
+                            }
+                            else if(nTimeMins==endCheck){
+                                $(document).ready(function(){
+                                    var now= new Date().getTime();
+                                    var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+                                    var seconds = Math.floor((now % (1000 * 60)) / 1000);
+                                    var nowTime = hours + ":"
+                                    + minutes + ":" + seconds;
+                                    console.log("This is now time "+ nowTime);
+                                    $.ajax({
+                                        url:'../controller/addCheckslot.php',
+                                        method: 'POST',
+                                        data: {now_date: nowTime},
+                                        success:function(data){
+                                            $('#attendChecker').html(data) ;
+                                        }
+                                   });
+                               });
+                            }
+                            else if(nTimeMins==openPeriod2){
+                                $(document).ready(function(){
+                                    var status= "time up";
+                                    
+                                    $.ajax({
+                                        url:'../controller/updateCheckslot.php',
+                                        method: 'POST',
+                                        data: {statusCheck: status},
+                                        success:function(data){
+                                            $('#attendChecker').html(data) ;
+                                        }
+                                   });
+                               });
+                            }
+                            else if(nTimeMins==eTimeMins){
+                                $(document).ready(function(){
+                                    var status2="class ended"
+                                    $.ajax({
+                                        url:'../controller/deleteCheckslot.php',
+                                        method: 'POST',
+                                        data: {statusCheck: status2},
+                                        success:function(data){
+                                            $('#attendChecker').html(data) ;
+                                        }
+                                   });
+                               });
+                            }
+                            for(let i = 1; i<=numRandomChecks; i++){
+                                if(nTimeMins>=(randomTimes[i]+sTimeMins) && nTimeMins<=(randomTimes[i]+sTimeMins+3)){
+                                    $(document).ready(function(){
+                                        var now= new Date().getTime();
+                                        var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                        var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+                                        var seconds = Math.floor((now % (1000 * 60)) / 1000);
+                                        var nowTime = hours + ":"
+                                        + minutes + ":" + seconds;
+                                        console.log("This is now time "+ nowTime);
+                                        $.ajax({
+                                            url:'../controller/addCheckslot.php',
+                                            method: 'POST',
+                                            data: {now_date: nowTime},
+                                            success:function(data){
+                                                $('#attendChecker').html(data) ;
+                                            }
+                                       });
+                                   });
+                                }
+                            }
+                        }
+                        else{
+                            document.getElementById("timer").innerHTML = "Not time for class";
                         }
                     }, 1000);
                     
