@@ -189,7 +189,7 @@ session_start();
             
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">CHeck attendance</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Check attendance</button>
         </div>
         </div>
     </div>
@@ -261,6 +261,9 @@ session_start();
                     var openPeriod2 = eTimeMins-1;
                     var numChecks= 3;
                     var numStartCheck=0;
+                    var numStopCheck=0;
+                    var numSlotCheck1=0;
+                    var numSlotCheck2=0;
                     var numEndCheck =0;
                     var numRandomChecks= numChecks-2;
                     if(randomTimes.length<numRandomChecks){
@@ -325,18 +328,20 @@ session_start();
                                 }
                             }
                             else if(nTimeMins==openPeriod1){
-                                $(document).ready(function(){
-                                    var status= "time up";
-                                    
-                                    $.ajax({
-                                        url:'../controller/updateCheckslot.php',
-                                        method: 'POST',
-                                        data: {statusCheck: status},
-                                        success:function(data){
-                                            $('#attendChecker').html(data) ;
-                                        }
+                                if(numSlotCheck1==0){
+                                    $(document).ready(function(){
+                                        var status= "time up";
+                                        
+                                        $.ajax({
+                                            url:'../controller/updateCheckslot.php',
+                                            method: 'POST',
+                                            data: {statusCheck: status},
+                                            success:function(data){
+                                                $('#attendChecker').html(data) ;
+                                            }
+                                       });
                                    });
-                               });
+                                }
                             }
                             else if(nTimeMins==endCheck){
                                 if(numEndCheck==0){
@@ -362,31 +367,36 @@ session_start();
                                 }
                             }
                             else if(nTimeMins==openPeriod2){
-                                $(document).ready(function(){
-                                    var status= "time up";
-                                    
-                                    $.ajax({
-                                        url:'../controller/updateCheckslot.php',
-                                        method: 'POST',
-                                        data: {statusCheck: status},
-                                        success:function(data){
-                                            $('#attendChecker').html(data) ;
-                                        }
+                                if(numSlotCheck2==0){
+                                    $(document).ready(function(){
+                                        var status= "time up";
+                                        
+                                        $.ajax({
+                                            url:'../controller/updateCheckslot.php',
+                                            method: 'POST',
+                                            data: {statusCheck: status},
+                                            success:function(data){
+                                                $('#attendChecker').html(data) ;
+                                            }
+                                       });
                                    });
-                               });
+                                }
                             }
                             else if(nTimeMins==eTimeMins){
-                                $(document).ready(function(){
-                                    var status2="class ended"
-                                    $.ajax({
-                                        url:'../controller/deleteCheckslot.php',
-                                        method: 'POST',
-                                        data: {statusCheck: status2},
-                                        success:function(data){
-                                            $('#attendChecker').html(data) ;
-                                        }
+                                if(numStopCheck==0){
+                                    $(document).ready(function(){
+                                        var status2="class ended"
+                                        $.ajax({
+                                            url:'../controller/deleteCheckslot.php',
+                                            method: 'POST',
+                                            data: {statusCheck: status2},
+                                            success:function(data){
+                                                $('#attendChecker').html(data) ;
+                                            }
+                                       });
                                    });
-                               });
+                                }
+                                numStopCheck++;
                             }
                             for(let i = 1; i<=numRandomChecks; i++){
                                 if(nTimeMins>=(randomTimes[i]+sTimeMins) && nTimeMins<=(randomTimes[i]+sTimeMins+3)){
