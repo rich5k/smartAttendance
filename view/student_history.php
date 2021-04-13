@@ -106,8 +106,8 @@ session_start();
                 }
                     echo '<h3>'.$courses->cName.'</h3>';
                     echo '<p>';
-                        $present_percentage=($numPresent/$numClasses)*100;
-                        $absent_percentage= ($numAbsent/$numClasses)*100;
+                        $present_percentage=($numClasses==0)? 0:($numPresent/$numClasses)*100;
+                        $absent_percentage=($numClasses==0)? 0 : ($numAbsent/$numClasses)*100;
                         echo 'Number of classes: '.$numClasses.', '.$present_percentage.'% present';
                         echo '<br>';
                         echo 'Number of missed: '.$absent_percentage.'%';
