@@ -14,8 +14,8 @@ if(isset($_POST['submit'])){
 
     $classDate = date('Y-m-d ', time());
     $nTime= date('H:i:s', time());
-    echo $classDate;
-    echo $nTime;
+    // echo $classDate;
+    // echo $nTime;
     //Instantiate Lecturer
     $lecturer= new Lecturer();
 
@@ -50,8 +50,11 @@ if(isset($_POST['submit'])){
             $registry= new Registry();
             $cSchedules= $registry->getSomeSchedule($courseID);
             $count= 0;
+            $timeCount=0;
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
+                    echo $cSchedule->cStartTime;
+                    echo $cSchedule->cEndTime;
                     if($nTime>=$cSchedule->cStartTime && $nTime<=$cSchedule->cEndTime){
                         //Add class timer To Do
                         if($lecturer->addClassTimer($classTimerData)){
@@ -69,12 +72,15 @@ if(isset($_POST['submit'])){
                         }
                     }
                     else{
-                        echo '<script>alert("Not Time for class. Pls see Registry")</script>';
-                        echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
-                        exit();
+                        $timeCount++;
                     }
                 }
                 $count++;
+            }
+            if($timeCount>0){
+                echo '<script>alert("Not Time for class. Pls see Registry")</script>';
+                echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
+                exit();
             }
             if($count>3){
                 echo '<script>alert("No class today. Pls see Registry")</script>';
@@ -105,8 +111,11 @@ if(isset($_POST['submit'])){
             $registry= new Registry();
             $cSchedules= $registry->getSomeSchedule($courseID);
             $count= 0;
+            $timeCount=0;
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
+                    // echo $cSchedule->cStartTime;
+                    // echo $cSchedule->cEndTime;
                     if($nTime>=$cSchedule->cStartTime && $nTime<=$cSchedule->cEndTime){
                         //Add class timer To Do
                         if($lecturer->addClassTimer($classTimerData)){
@@ -124,12 +133,15 @@ if(isset($_POST['submit'])){
                         }
                     }
                     else{
-                        echo '<script>alert("Not Time for class. Pls see Registry")</script>';
-                        echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
-                        exit();
+                        $timeCount++;
                     }
                 }
                 $count++;
+            }
+            if($timeCount>0){
+                echo '<script>alert("Not Time for class. Pls see Registry")</script>';
+                echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
+                exit();
             }
             if($count>3){
                 echo '<script>alert("No class today. Pls see Registry")</script>';
@@ -159,8 +171,11 @@ if(isset($_POST['submit'])){
             $registry= new Registry();
             $cSchedules= $registry->getSomeSchedule($courseID);
             $count= 0;
+            $timeCount=0;
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
+                    // echo $cSchedule->cStartTime;
+                    // echo $cSchedule->cEndTime;
                     if($nTime>=$cSchedule->cStartTime && $nTime<=$cSchedule->cEndTime){
                         //Add class timer To Do
                         if($lecturer->addClassTimer($classTimerData)){
@@ -178,12 +193,15 @@ if(isset($_POST['submit'])){
                         }
                     }
                     else{
-                        echo '<script>alert("Not Time for class. Pls see Registry")</script>';
-                        echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
-                        exit();
+                        $timeCount++;
                     }
                 }
                 $count++;
+            }
+            if($timeCount>0){
+                echo '<script>alert("Not Time for class. Pls see Registry")</script>';
+                echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
+                exit();
             }
             if($count>3){
                 echo '<script>alert("No class today. Pls see Registry")</script>';
@@ -213,8 +231,11 @@ if(isset($_POST['submit'])){
             $registry= new Registry();
             $cSchedules= $registry->getSomeSchedule($courseID);
             $count= 0;
+            $timeCount=0;
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
+                    // echo $cSchedule->cStartTime;
+                    // echo $cSchedule->cEndTime;
                     if($nTime>=$cSchedule->cStartTime && $nTime<=$cSchedule->cEndTime){
                         //Add class timer To Do
                         if($lecturer->addClassTimer($classTimerData)){
@@ -232,12 +253,15 @@ if(isset($_POST['submit'])){
                         }
                     }
                     else{
-                        echo '<script>alert("Not Time for class. Pls see Registry")</script>';
-                        echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
-                        exit();
+                        $timeCount++;
                     }
                 }
                 $count++;
+            }
+            if($timeCount>0){
+                echo '<script>alert("Not Time for class. Pls see Registry")</script>';
+                echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
+                exit();
             }
             if($count>3){
                 echo '<script>alert("No class today. Pls see Registry")</script>';
@@ -267,8 +291,11 @@ if(isset($_POST['submit'])){
             $registry= new Registry();
             $cSchedules= $registry->getSomeSchedule($courseID);
             $count= 0;
+            $timeCount=0;
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
+                    // echo $cSchedule->cStartTime;
+                    // echo $cSchedule->cEndTime;
                     if($nTime>=$cSchedule->cStartTime && $nTime<=$cSchedule->cEndTime){
                         //Add class timer To Do
                         if($lecturer->addClassTimer($classTimerData)){
@@ -286,12 +313,15 @@ if(isset($_POST['submit'])){
                         }
                     }
                     else{
-                        echo '<script>alert("Not Time for class. Pls see Registry")</script>';
-                        echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
-                        exit();
+                        $timeCount++;
                     }
                 }
                 $count++;
+            }
+            if($timeCount>0){
+                echo '<script>alert("Not Time for class. Pls see Registry")</script>';
+                echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
+                exit();
             }
             if($count>3){
                 echo '<script>alert("No class today. Pls see Registry")</script>';
@@ -321,8 +351,11 @@ if(isset($_POST['submit'])){
             $registry= new Registry();
             $cSchedules= $registry->getSomeSchedule($courseID);
             $count= 0;
+            $timeCount=0;
             foreach($cSchedules as $cSchedule){
                 if(date('l')==$cSchedule->cDay){
+                    // echo $cSchedule->cStartTime;
+                    // echo $cSchedule->cEndTime;
                     if($nTime>=$cSchedule->cStartTime && $nTime<=$cSchedule->cEndTime){
                         //Add class timer To Do
                         if($lecturer->addClassTimer($classTimerData)){
@@ -340,12 +373,15 @@ if(isset($_POST['submit'])){
                         }
                     }
                     else{
-                        echo '<script>alert("Not Time for class. Pls see Registry")</script>';
-                        echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
-                        exit();
+                        $timeCount++;
                     }
                 }
                 $count++;
+            }
+            if($timeCount>0){
+                echo '<script>alert("Not Time for class. Pls see Registry")</script>';
+                echo '<script>window.location.href = "../view/lecturer_dashboard.php";</script>';
+                exit();
             }
             if($count>3){
                 echo '<script>alert("No class today. Pls see Registry")</script>';
